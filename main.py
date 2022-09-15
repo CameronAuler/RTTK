@@ -5,7 +5,10 @@
 """This is the main menu module for the RTTK project."""
 
 import os
+import time
 from sys import platform
+import options
+import db
 
 def clear():
     """This function clears the terminal window."""
@@ -23,7 +26,7 @@ def main_title():
 
     clear()
 
-    print(r"""\
+    print(r"""
           _____                _____                _____                      _____          
          /\    \              /\    \              /\    \                    /\    \         
         /::\    \            /::\    \            /::\    \                  /::\____\        
@@ -53,9 +56,7 @@ ________________________________________________________________________________
 
 def main_menu():
     """This function prints out the main menu options."""
-    menu = ["OSINT", "Probe", "Attack", "Notes"]
-
-    for index, phase in enumerate(menu):
+    for index, phase in enumerate(db.menus("main")):
         print(f"[+]   -->   {index}. {phase}")
 
     print(" ")
@@ -63,10 +64,26 @@ def main_menu():
 
 def user_input():
     """This function gathers the user input."""
-    user_selection = input("<>   Attack Stage?: ")
-    if user_selection == "OSINT" or user_selection == "osint":
+    user_entry = str(input("\n<>   COMMAND: "))
+    user_selection = user_entry.upper()
+
+    if user_selection == "OSINT":
         osint()
+    elif user_selection == "PROBE":
+        probe()
+    elif user_selection == "ATTACK":
+        attack()
+    elif user_selection == "NOTES":
+        notes()
+    elif user_selection == "OPTIONS":
+        display_options()
     else:
+        print("")
+        print("Unrecognized attack phase . . .")
+        for _each_number in range(options.options("menu_length")):
+            time.sleep(0.001)
+            print("=", end="")
+        print("")
         user_input()
 
 def osint():
@@ -84,6 +101,8 @@ def attack():
 def notes():
     """This function displays the notes menu."""
 
+def display_options():
+    """This function displays the options menu."""
 
 main_title()
 main_menu()
