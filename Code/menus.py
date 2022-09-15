@@ -4,7 +4,6 @@
 
 """This module contains the menu class and all of the menus for the RTTK project."""
 import functions
-import put
 
 def menu_db(menu):
     """This function contains all of the menus for the program."""
@@ -18,23 +17,6 @@ def menu_db(menu):
         "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS"]
     }
     return menu_list[menu]
-
-"""
-class menu:
-    def __init__(self, name):
-        self.name = name
-
-    def display_menu():
-        for index, item in enumerate(menu_db(self.name)):
-            print(f"[+]   -->   {index}. {item}")
-    
-    display_menu()
-    put.user_input()
-
-
-def main_menu():
-    put.main_menu_selection(menu("main"))
-"""
 
 def main_menu():
     """This function prints out the main menu options."""

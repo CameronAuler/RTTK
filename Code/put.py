@@ -14,6 +14,7 @@ def user_input():
     return main_menu_selection(user_selection)
 
 def main_menu_selection(user_selection):
+    """This function translates the user input for the main menu."""
     if user_selection == "ANONYMITY" or user_selection == "A":
         menus.anonymity_menu()
     elif user_selection == "OSINT" or user_selection == "O":
@@ -27,8 +28,6 @@ def main_menu_selection(user_selection):
     elif user_selection == "OPTIONS" or user_selection == "OPT":
         menus.display_options()
     else:
-        print("")
         print("Unrecognized attack phase . . .")
-        functions.load()
-        print("")
+        functions.set_speed(functions.load())
         user_input()
