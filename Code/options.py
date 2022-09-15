@@ -7,6 +7,9 @@
 def options(setting):
     """This function defines settings for RTTK."""
     opts = {
-        "menu_length": 94
+        "menu_length": 94,
+        "load_time": 0.002,
+        "cores": 12,
+        "notes_directory": "add directory here . . ."
     }
     return opts[setting]

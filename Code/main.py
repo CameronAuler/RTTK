@@ -6,12 +6,14 @@
 
 import menus
 import functions
+import put
 
 def main():
     """__main__"""
+    functions.load()
     functions.main_title()
     menus.main_menu()
-    functions.user_input()
+    put.user_input()
 
 if __name__ == "__main__":
     main()
