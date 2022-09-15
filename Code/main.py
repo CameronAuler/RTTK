@@ -9,7 +9,7 @@ import put
 
 def main():
     """__main__"""
-    functions.set_speed(functions.load())
+    functions.threader(functions.load())
     functions.main_title()
     menus.main_menu()
     put.user_input()

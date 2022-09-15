@@ -9,7 +9,7 @@ import functions
 
 def user_input():
     """This function gathers the user input."""
-    user_entry = str(input("\n<>   COMMAND: "))
+    user_entry = str(input("\n<>>> "))
     user_selection = user_entry.upper()
     return main_menu_selection(user_selection)
 
