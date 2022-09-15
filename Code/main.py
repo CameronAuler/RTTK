@@ -67,14 +67,16 @@ def user_input():
     user_entry = str(input("\n<>   COMMAND: "))
     user_selection = user_entry.upper()
 
-    if user_selection == "OSINT":
-        osint()
+    if user_selection == "ANONYMITY":
+        anonymity_menu()
+    elif user_selection == "OSINT":
+        osint_menu()
     elif user_selection == "PROBE":
-        probe()
+        probe_menu()
     elif user_selection == "ATTACK":
-        attack()
+        attack_menu()
     elif user_selection == "NOTES":
-        notes()
+        notes_menu()
     elif user_selection == "OPTIONS":
         display_options()
     else:
@@ -86,19 +88,23 @@ def user_input():
         print("")
         user_input()
 
-def osint():
+def anonymity_menu():
+    """This function displays the list of identity masking tools."""
+    return print("This is the anonymity tool menu.")
+
+def osint_menu():
     """This function displays the list of OSINT tools."""
     return print("This is the OSINT tool menu.")
 
-def probe():
+def probe_menu():
     """This function displays the list of probing tools."""
     return print("This is the Probe tool menu.")
 
-def attack():
+def attack_menu():
     """This function displays the list of attack tools."""
     return print("This is the attack tool menu.")
 
-def notes():
+def notes_menu():
     """This function displays the notes menu."""
 
 def display_options():

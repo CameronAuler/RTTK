@@ -7,11 +7,12 @@
 def menus(menu):
     """This function contains all of the menus for the program."""
     menu_list = {
-        "main": ["OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS"],
+        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS"],
         "osint": [],
         "probe": [],
         "attack": [],
         "notes": [],
+        "Anonymity" : [],
         "options": []
     }
     return menu_list[menu]
