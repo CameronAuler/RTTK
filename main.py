@@ -2,9 +2,28 @@
 # 9/14/2022
 # Cameron Auler
 
+"""This is the main menu module for the RTTK project."""
+
+import os
+from sys import platform
+
+def clear():
+    """This function clears the terminal window."""
+    if platform == "linux" or platform == "linux2":
+        os.system('clear')
+    elif platform == "darwin":
+        os.system('clear')
+    elif platform == "win32":
+        os.system('cls')
+    else:
+        return platform
 
 def main_title():
-    print("""\
+    """This function prints the ASCII logo."""
+
+    clear()
+
+    print(r"""\
           _____                _____                _____                      _____          
          /\    \              /\    \              /\    \                    /\    \         
         /::\    \            /::\    \            /::\    \                  /::\____\        
@@ -32,23 +51,38 @@ ________________________________________________________________________________
 ----------------------------------------------------------------------------------------------
       """)
 
-
-
 def main_menu():
-      print("[+]   -->   OSINT ...")
-      print("[+]   -->   Probe ...")
-      print("[+]   -->   Attack ...")
-      print(" ")
-      print(" ")
+    """This function prints out the main menu options."""
+    menu = ["OSINT", "Probe", "Attack", "Notes"]
 
+    for index, phase in enumerate(menu):
+        print(f"[+]   -->   {index}. {phase}")
 
-
+    print(" ")
+    print(" ")
 
 def user_input():
-      stage_selection = input("<>   Attack Stage?: ")
-      return
+    """This function gathers the user input."""
+    user_selection = input("<>   Attack Stage?: ")
+    if user_selection == "OSINT" or user_selection == "osint":
+        osint()
+    else:
+        user_input()
 
+def osint():
+    """This function displays the list of OSINT tools."""
+    return print("This is the OSINT tool menu.")
 
+def probe():
+    """This function displays the list of probing tools."""
+    return print("This is the Probe tool menu.")
+
+def attack():
+    """This function displays the list of attack tools."""
+    return print("This is the attack tool menu.")
+
+def notes():
+    """This function displays the notes menu."""
 
 
 main_title()
