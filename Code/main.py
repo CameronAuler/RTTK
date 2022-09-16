@@ -3,6 +3,7 @@
 # Cameron Auler
 
 """This is the main menu module for the RTTK project."""
+from re import A
 import menus
 import functions
 

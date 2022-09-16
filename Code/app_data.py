@@ -14,7 +14,6 @@ def menu_db(menu):
         "osint": ["SQUEEGEE", "SCANNER", "BACK"],
         "probe": ["NET SCAN", "BACK"],
         "attack": ["CVE DB", "CRACK", "BACK"],
-        "notes": ["CHANGE NOTES DIRECTORY", "BACK"],
         "anonymity" : ["PROXY PONG", "BACK"],
         "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"]
     }

@@ -4,12 +4,13 @@
 
 """This module contains the menu class and all of the menus for the RTTK project."""
 import sys
+import time
 import functions
 from colors import Colors
 import put
 import notes
 import app_data
-# import options
+import options
 
 def menu_history(menu_record):
     """This function contains all of the menu history for the RTTK project."""
@@ -25,8 +26,10 @@ class Menu:
         """This function displays the menu for the menu class."""
         for _index, item in enumerate(app_data.menu_db(name)):
             print(f"{Colors.white}[+]{Colors.end}{Colors.cyan}   -->   {item}{Colors.end}", end="")
+
             for _index, item in enumerate(app_data.command_db(item.lower())):
                 print(f"\t{Colors.black}   <{item}>{Colors.end}", end="")
+
             print()
 
 
@@ -68,26 +71,31 @@ def attack_menu():
     name = "attack"
     menu_setup(name)
 
-def notes_menu():
-    """This function displays the notes menu."""
-    name = "notes"
-    menu_setup(name)
-    notes.notes_setup()
-    put.user_input()
-
-def display_options():
-    """This function displays the options menu."""
-    name = "options"
-    menu_setup(name)
-
 def back():
     """This function goes back to the last menu in the menu history of the RTTK project."""
     name = app_data.history[0]
     menu_setup(name)
 
+def notes_menu():
+    """This function displays the notes menu."""
+    # name = "notes"
+    notes.notes_setup()
+    time.sleep(1)
+    back()
+    put.user_input()
+
+def display_options():
+    """This function displays the options menu."""
+    # name = "options"
+    options.options_setup()
+    time.sleep(1)
+    back()
+
 def help_page():
     """This function contains the documentation for how to use the RTTK application."""
     functions.set_ui()
+
+
 
     print(r"""
     Commands
@@ -103,4 +111,6 @@ def help_page():
 
 def quit_app():
     """This function quits the RTTK application."""
+    print("Quiting >>>")
+    functions.threader(functions.load())
     sys.exit()

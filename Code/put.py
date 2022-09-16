@@ -7,6 +7,7 @@
 import menus
 from colors import Colors
 import app_data
+import time
 
 def user_input():
     """This function gathers the user input."""
@@ -35,5 +36,7 @@ def menu_selection(user_selection):
     elif user_selection == "QUIT" or user_selection == "Q":
         menus.quit_app()
     else:
+        print("INVALID COMMAND")
+        time.sleep(0.4)
         menus.menu_setup(app_data.history[-1])
         user_input()

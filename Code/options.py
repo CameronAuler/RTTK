@@ -15,3 +15,13 @@ def options(setting):
         "notes_directory": "add directory here . . ."
     }
     return opts[setting]
+
+def options_setup():
+    """This function is to set up the options page for the RTTK application."""
+    print(
+        """
+
+        Options will be set up here . . .
+
+        """
+    )

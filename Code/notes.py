@@ -9,3 +9,10 @@ def notes_setup():
     """This function will setup the notes menu screen for the RTTK project."""
     displayed_dir = os.path.dirname(os.path.realpath(__file__))
     print(f"CURRENT DIRECTORY: {displayed_dir}")
+    print(
+        """
+
+        Notes will be set up here . . .
+
+        """
+    )
