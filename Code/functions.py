@@ -84,7 +84,7 @@ def threader(fun):
 
     t_stop = time.perf_counter()
     timer = t_stop - t_start
-    print("\n>>  load speed  -->    ", round(timer, 4))
+    print("\n>>  load speed  -->    ", round(timer, 5))
 
 def set_ui():
     """This function clears the window and sets the header."""

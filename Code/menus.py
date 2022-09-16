@@ -32,7 +32,7 @@ class Menu:
         """This function gathers the user input."""
         user_entry = str(input("\n<>>> "))
         user_selection = user_entry.upper()
-        return put.main_menu_selection(user_selection)
+        return put.menu_selection(user_selection)
 
 def main_menu():
     """This function displays the list of identity maskidng tools."""
