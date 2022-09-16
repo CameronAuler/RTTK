@@ -9,7 +9,7 @@ def options(setting):
     opts = {
         "menu_length": 31,
         "load_time": 0.005,
-        "set_speed": False,
+        "set_speed": True,
         "thread_limit": 20,
         "cores": 12,
         "notes_directory": "add directory here . . ."
