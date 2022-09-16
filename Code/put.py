@@ -7,11 +7,23 @@
 import menus
 import functions
 
+def input_db(put):
+    """This function holds the input database for the RTTK project."""
+    inputs = {
+        "main": ["ANONYMITY", "A", "OSINT", "O", "PROBE", "P", "ATTACK", "ATK", "NOTES", "N", "OPTIONS", "OPT"],
+        "tools": [],
+        "commands": ["clear", "help"],
+        "flags": []
+    }
+    return inputs[put]
+
 def user_input():
     """This function gathers the user input."""
     user_entry = str(input("\n<>>> "))
     user_selection = user_entry.upper()
-    return main_menu_selection(user_selection)
+
+    if user_selection in input_db(user_selection):
+        return main_menu_selection(user_selection), print(input_db(user_selection))
 
 def main_menu_selection(user_selection):
     """This function translates the user input for the main menu."""
@@ -29,5 +41,5 @@ def main_menu_selection(user_selection):
         menus.display_options()
     else:
         print("Unrecognized attack phase . . .")
-        functions.set_speed(functions.load())
+        functions.threader(functions.load())
         user_input()

@@ -45,22 +45,10 @@ $ ------------------------------------------------------------------------------
 
 def load():
     """loading ASCII animation"""
-    # Start timer.
-    start = time.perf_counter()
-
     for _each_number in range(options.options("menu_length")):
         time.sleep(options.options("load_time"))
-    print("")
-    print(">>>", end="")
+        print(">>>", end="")
     print(" $")
-
-    # Stop timer.
-    stop = time.perf_counter()
-
-    # Calculate time.
-    timer = stop - start
-    print("\n>>", round(timer, 2), "reg. Load>>>    ", end="")
-
 
 def clear():
     """This function clears the terminal window."""
@@ -75,10 +63,10 @@ def clear():
 
 def threader(fun):
     """This function sets the speed and intensity of the application on the CPU."""
-    # Timer
-    t_start = time.perf_counter()
 
     if options.options("set_speed") is True:
+        # Timer
+        t_start = time.perf_counter()
         threads = []
         for _ in range(options.options("thread_limit")):
             thred = threading.Thread(target=fun)
@@ -87,16 +75,19 @@ def threader(fun):
         for thread in threads:
             thread.join()
             # threads.clear()
-        print("threaded!!")
+        print("LOAD STATUS: THREADED.")
+
     else:
-        print("not threaded.")
+        # Timer
+        t_start = time.perf_counter()
+        print("LOAD STATUS: NOT THREADED.")
 
     t_stop = time.perf_counter()
     timer = t_stop - t_start
-    print(">>", round(timer, 2), "thread load>>>  ")
-    print("")
+    print("\n>>  load speed  -->    ", round(timer, 4))
 
 def set_ui():
     """This function clears the window and sets the header."""
+    clear()
+    main_title()
     threader(load())
-    # main_title()
