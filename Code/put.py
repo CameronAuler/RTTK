@@ -7,6 +7,21 @@
 import menus
 from colors import Colors
 
+def command_db(menu):
+    """This function contains all of the menus for the program."""
+
+    command_list = {
+        "main": ["clear", "cls"],
+        "anonymity": ["ANONYMITY", "A"],
+        "osint": ["OSINT", "O"],
+        "probe": ["PROBE", "P"],
+        "attack": ["ATTACK", "ATK"],
+        "notes": ["cnd"],
+        "back": ["BACK", "B"],
+        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"]
+    }
+    return command_list[menu]
+
 def user_input():
     """This function gathers the user input."""
     user_entry = str(input(f"\n{Colors.magenta}<>>> {Colors.end}"))

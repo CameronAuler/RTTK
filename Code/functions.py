@@ -46,7 +46,7 @@ $ ------------------------------------------------------------------------------
 
 def load():
     """loading ASCII animation"""
-    for _each_number in range(options.options("menu_length")):
+    for _each_number in range(int(options.options("menu_length") / 3)):
         time.sleep(options.options("load_time"))
         print(f"{Colors.red}>>>{Colors.end}", end="")
     print("$")
@@ -79,7 +79,7 @@ def threader(fun):
         print("THREAD STATUS: MULTI-THREADED", end="")
         t_stop = time.perf_counter()
         timer = t_stop - t_start
-        print("  >>  ", round(timer, 4))
+        print(f"  >>  LOAD TIME: {round(timer, 4)}")
         print()
 
     else:
