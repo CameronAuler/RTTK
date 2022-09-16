@@ -9,6 +9,7 @@ import time
 from sys import platform
 import threading
 import options
+from colors import Colors
 
 def main_title():
     """This function prints the ASCII logo."""
@@ -47,8 +48,8 @@ def load():
     """loading ASCII animation"""
     for _each_number in range(options.options("menu_length")):
         time.sleep(options.options("load_time"))
-        print(">>>", end="")
-    print(" $")
+        print(f"{Colors.red}>>>{Colors.end}", end="")
+    print("$")
 
 def clear():
     """This function clears the terminal window."""

@@ -34,8 +34,8 @@ class Menu:
 
     def display_menu(self, name):
         """This function displays the menu for the menu class."""
-        for index, item in enumerate(menu_db(name)):
-            print(f"[+]   -->   {index}. {item}")
+        for _index, item in enumerate(menu_db(name)):
+            print(f"[+]   -->   {item}")
         print(" ")
 
     def user_input(self):
@@ -94,4 +94,3 @@ def back():
 def quit_app():
     """This function quits the RTTK application."""
     sys.exit()
-

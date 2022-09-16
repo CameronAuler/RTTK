@@ -5,11 +5,11 @@
 """This module contains all of the user input for the RTTK project."""
 
 import menus
-import functions
+from colors import Colors
 
 def user_input():
     """This function gathers the user input."""
-    user_entry = str(input("\n<>>> "))
+    user_entry = str(input(f"\n{Colors.magenta}<>>> {Colors.end}"))
     user_selection = user_entry.upper()
     menu_selection(user_selection)
 
@@ -32,6 +32,5 @@ def menu_selection(user_selection):
     elif user_selection == "QUIT" or user_selection == "Q":
         menus.quit_app()
     else:
-        print("Unrecognized attack phase . . .")
-        functions.threader(functions.load())
+        menus.menu_setup(menus.history[-1])
         user_input()
