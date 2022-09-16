@@ -19,3 +19,20 @@ def menu_db(menu):
         "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"]
     }
     return menu_list[menu]
+
+def command_db(menu):
+    """This function contains all of the menus for the program."""
+
+    command_list = {
+        "main": ["clear", "cls"],
+        "anonymity": ["ANONYMITY", "A"],
+        "osint": ["OSINT", "O"],
+        "probe": ["PROBE", "P"],
+        "attack": ["ATTACK", "ATK"],
+        "notes": ["cnd"],
+        "back": ["BACK", "B"],
+        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"],
+        "help": ["HELP", "H"],
+        "quit": ["QUIT", "Q"]
+    }
+    return command_list[menu]

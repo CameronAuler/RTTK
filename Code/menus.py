@@ -25,7 +25,7 @@ class Menu:
         """This function displays the menu for the menu class."""
         for _index, item in enumerate(app_data.menu_db(name)):
             print(f"{Colors.white}[+]{Colors.end}{Colors.cyan}   -->   {item}{Colors.end}", end="")
-            for _index, item in enumerate(put.command_db(name)):
+            for _index, item in enumerate(app_data.command_db(item.lower())):
                 print(f"   <{item}>", end="")
             print()
 

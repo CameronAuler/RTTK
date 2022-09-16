@@ -6,21 +6,7 @@
 
 import menus
 from colors import Colors
-
-def command_db(menu):
-    """This function contains all of the menus for the program."""
-
-    command_list = {
-        "main": ["clear", "cls"],
-        "anonymity": ["ANONYMITY", "A"],
-        "osint": ["OSINT", "O"],
-        "probe": ["PROBE", "P"],
-        "attack": ["ATTACK", "ATK"],
-        "notes": ["cnd"],
-        "back": ["BACK", "B"],
-        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"]
-    }
-    return command_list[menu]
+import app_data
 
 def user_input():
     """This function gathers the user input."""
@@ -49,5 +35,5 @@ def menu_selection(user_selection):
     elif user_selection == "QUIT" or user_selection == "Q":
         menus.quit_app()
     else:
-        menus.menu_setup(menus.history[-1])
+        menus.menu_setup(app_data.history[-1])
         user_input()
