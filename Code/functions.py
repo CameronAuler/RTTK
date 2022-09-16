@@ -15,7 +15,7 @@ def main_title():
 
     print(r"""
 $ ------------------------------------------------------------------------------------------ $
-$ ______________Champlain College__-->__SEC 440_____________FALL Semester 2022______________ $
+$ ______________CHAMPLAIN COLLEGE__-->__SEC 440_____________FALL SEMESTER 2022______________ $
 $ ------------------------------------------------------------------------------------------ $
           _____                _____                _____                      _____          
          /\    \              /\    \              /\    \                    /\    \         
@@ -39,7 +39,7 @@ $ ------------------------------------------------------------------------------
         \:|   |                                                              \:|   |          
          \|___|                                                               \|___|          
 $ ------------------------------------------------------------------------------------------ $
-$ ___________________CAMERON AULER_____________________CALEB Desruisseaux___________________ $
+$ ___________________CAMERON AULER_____________________CALEB DESRUISSEAUX___________________ $
 $ ------------------------------------------------------------------------------------------ $
       """)
 
@@ -74,17 +74,16 @@ def threader(fun):
             threads.append(thred)
         for thread in threads:
             thread.join()
-            # threads.clear()
-        print("LOAD STATUS: THREADED.")
+            threads.clear()
+        print("THREAD STATUS: MULTI-THREADED", end="")
+        t_stop = time.perf_counter()
+        timer = t_stop - t_start
+        print("  >>  ", round(timer, 4))
+        print()
 
     else:
-        # Timer
-        t_start = time.perf_counter()
-        print("LOAD STATUS: NOT THREADED.")
-
-    t_stop = time.perf_counter()
-    timer = t_stop - t_start
-    print("\n>>  load speed  -->    ", round(timer, 5))
+        print("THREAD STATUS: NOT THREADED")
+        print()
 
 def set_ui():
     """This function clears the window and sets the header."""

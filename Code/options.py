@@ -8,7 +8,7 @@ def options(setting):
     """This function defines settings for RTTK."""
     opts = {
         "menu_length": 31,
-        "load_time": 0.0000001,
+        "load_time": 0.005,
         "set_speed": False,
         "thread_limit": 20,
         "cores": 12,

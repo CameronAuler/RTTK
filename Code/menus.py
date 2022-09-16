@@ -3,19 +3,29 @@
 # Cameron Auler
 
 """This module contains the menu class and all of the menus for the RTTK project."""
+import sys
 import functions
 import put
+
+history = []
+
+def menu_history(menu_record):
+    """This function contains all of the menu history for the RTTK project."""
+    if menu_record in history:
+        pass
+    else:
+        history.append(menu_record)
 
 def menu_db(menu):
     """This function contains all of the menus for the program."""
     menu_list = {
-        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "BACK"],
+        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "QUIT"],
         "osint": ["SQUEEGEE", "SCANNER", "BACK"],
         "probe": ["NET SCAN", "BACK"],
         "attack": ["CVE DB", "CRACK", "BACK"],
         "notes": ["BACK"],
         "anonymity" : ["PROXY PONG", "BACK"],
-        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS"]
+        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"]
     }
     return menu_list[menu]
 
@@ -34,44 +44,54 @@ class Menu:
         user_selection = user_entry.upper()
         return put.menu_selection(user_selection)
 
+def menu_setup(name):
+    """This function sets up each menu for the RTTK project."""
+    functions.set_ui()
+    Menu().display_menu(name)
+    menu_history(name)
+    put.user_input()
+
 def main_menu():
     """This function displays the list of identity maskidng tools."""
-    functions.set_ui()
-    Menu().display_menu("main")
-    put.user_input()
+    name = "main"
+    menu_setup(name)
 
 def anonymity_menu():
     """This function displays the list of identity masking tools."""
-    functions.set_ui()
-    Menu().display_menu("anonymity")
-    put.user_input()
+    name = "anonymity"
+    menu_setup(name)
 
 def osint_menu():
     """This function displays the list of OSINT tools."""
-    functions.set_ui()
-    Menu().display_menu("osint")
-    put.user_input()
+    name = "osint"
+    menu_setup(name)
 
 def probe_menu():
     """This function displays the list of probing tools."""
-    functions.set_ui()
-    Menu().display_menu("probe")
-    put.user_input()
+    name = "probe"
+    menu_setup(name)
 
 def attack_menu():
     """This function displays the list of attack tools."""
-    functions.set_ui()
-    Menu().display_menu("attack")
-    put.user_input()
+    name = "attack"
+    menu_setup(name)
 
 def notes_menu():
     """This function displays the notes menu."""
-    functions.set_ui()
-    Menu().display_menu("notes")
-    put.user_input()
+    name = "notes"
+    menu_setup(name)
 
 def display_options():
     """This function displays the options menu."""
-    functions.set_ui()
-    Menu().display_menu("options")
-    put.user_input()
+    name = "options"
+    menu_setup(name)
+
+def back():
+    """This function goes back to the last menu in the menu history of the RTTK project."""
+    name = history[0]
+    menu_setup(name)
+
+def quit_app():
+    """This function quits the RTTK application."""
+    sys.exit()
+

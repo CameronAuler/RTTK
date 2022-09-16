@@ -27,6 +27,10 @@ def menu_selection(user_selection):
         menus.notes_menu()
     elif user_selection == "OPTIONS" or user_selection == "OPT":
         menus.display_options()
+    elif user_selection == "BACK" or user_selection == "B":
+        menus.back()
+    elif user_selection == "QUIT" or user_selection == "Q":
+        menus.quit_app()
     else:
         print("Unrecognized attack phase . . .")
         functions.threader(functions.load())
