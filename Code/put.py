@@ -29,6 +29,8 @@ def menu_selection(user_selection):
         menus.display_options()
     elif user_selection == "BACK" or user_selection == "B":
         menus.back()
+    elif user_selection == "HELP" or user_selection == "H":
+        menus.help_page()
     elif user_selection == "QUIT" or user_selection == "Q":
         menus.quit_app()
     else:

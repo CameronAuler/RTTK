@@ -19,7 +19,7 @@ def menu_history(menu_record):
 def menu_db(menu):
     """This function contains all of the menus for the program."""
     menu_list = {
-        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "QUIT"],
+        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "HELP", "QUIT"],
         "osint": ["SQUEEGEE", "SCANNER", "BACK"],
         "probe": ["NET SCAN", "BACK"],
         "attack": ["CVE DB", "CRACK", "BACK"],
@@ -90,6 +90,22 @@ def back():
     """This function goes back to the last menu in the menu history of the RTTK project."""
     name = history[0]
     menu_setup(name)
+
+def help_page():
+    """This function contains the documentation for how to use the RTTK application."""
+    functions.set_ui()
+
+    print(r"""
+    Commands
+        - 
+        - 
+        - 
+        
+    Flags
+        - 
+        - 
+        - 
+    """)
 
 def quit_app():
     """This function quits the RTTK application."""
