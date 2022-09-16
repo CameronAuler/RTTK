@@ -26,7 +26,7 @@ class Menu:
         for _index, item in enumerate(app_data.menu_db(name)):
             print(f"{Colors.white}[+]{Colors.end}{Colors.cyan}   -->   {item}{Colors.end}", end="")
             for _index, item in enumerate(app_data.command_db(item.lower())):
-                print(f"   <{item}>", end="")
+                print(f"\t{Colors.black}   <{item}>{Colors.end}", end="")
             print()
 
 

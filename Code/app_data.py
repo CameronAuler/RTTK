@@ -26,15 +26,21 @@ def command_db(menu):
     command_list = {
         # MENUS
         "main": ["clear", "cls"],
-        "anonymity": ["ANONYMITY", "A"],
-        "osint": ["OSINT", "O"],
-        "probe": ["PROBE", "P"],
-        "attack": ["ATTACK", "ATK"],
-        "notes": ["cnd"],
-        "back": ["BACK", "B"],
-        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"],
-        "help": ["HELP", "H"],
-        "quit": ["QUIT", "Q"]
+        "anonymity": ["anonymity", "a"],
+        "osint": ["osint", "o"],
+        "probe": ["probe", "p"],
+        "attack": ["attack", "atk"],
+        "notes": ["notes", "n"],
+        "back": ["back", "b"],
+        "options": ["options", "opt"],
+        "help": ["help", "h"],
+        "quit": ["quit", "q"],
         # TOOLS
+        "net scan": ["nscan", "ns"],
+        "proxy pong": ["xpong", "xp"],
+        "squeegee": ["squg", "sq"],
+        "scanner": ["scan", "sc"],
+        "cve db": ["cvb", "cb"],
+        "crack": ["crack", "ck"]
     }
     return command_list[menu]
