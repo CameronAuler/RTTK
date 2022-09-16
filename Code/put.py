@@ -4,10 +4,10 @@
 
 """This module contains all of the user input for the RTTK project."""
 
+import time
 import menus
 from colors import Colors
 import app_data
-import time
 
 def user_input():
     """This function gathers the user input."""

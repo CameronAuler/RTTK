@@ -6,23 +6,16 @@
 
 history = []
 
-def menu_db(menu):
-    """This function contains all of the menus for the program."""
-
-    menu_list = {
+menu_dict = {
         "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "HELP", "QUIT"],
         "osint": ["SQUEEGEE", "SCANNER", "BACK"],
         "probe": ["NET SCAN", "BACK"],
         "attack": ["CVE DB", "CRACK", "BACK"],
         "anonymity" : ["PROXY PONG", "BACK"],
-        "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"]
+        "options": ["BACK"]
     }
-    return menu_list[menu]
 
-def command_db(menu):
-    """This function contains all of the menus for the program."""
-
-    command_list = {
+command_dict = {
         # MENUS
         "main": ["clear", "cls"],
         "anonymity": ["anonymity", "a"],
@@ -42,4 +35,10 @@ def command_db(menu):
         "cve db": ["cvb", "cb"],
         "crack": ["crack", "ck"]
     }
-    return command_list[menu]
+def menu_db(menu):
+    """This function contains all of the menus for the program."""
+    return menu_dict[menu]
+
+def command_db(menu):
+    """This function contains all of the menus for the program."""
+    return command_dict[menu]

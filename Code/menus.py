@@ -11,6 +11,7 @@ import put
 import notes
 import app_data
 import options
+import documentation
 
 def menu_history(menu_record):
     """This function contains all of the menu history for the RTTK project."""
@@ -23,15 +24,12 @@ class Menu:
     """This is the class for all of the menus in the RTTK project."""
 
     def display_menu(self, name):
-        """This function displays the menu for the menu class."""
-        for _index, item in enumerate(app_data.menu_db(name)):
-            print(f"{Colors.white}[+]{Colors.end}{Colors.cyan}   -->   {item}{Colors.end}", end="")
-
-            for _index, item in enumerate(app_data.command_db(item.lower())):
-                print(f"\t{Colors.black}   <{item}>{Colors.end}", end="")
-
-            print()
-
+        """This function displays the menu for the current menu for the RTTK project."""
+        for _key, value in enumerate(app_data.menu_db(name)):
+            print(f"\n{Colors.white}[+]{Colors.end}{Colors.cyan}   -->   {value}{Colors.end}", end="")
+            for _key, value in enumerate(app_data.command_db(value.lower())):
+                print(f"\t{Colors.black}   <{value}>{Colors.end}", end="")
+        print("\n")
 
     def user_input(self):
         """This function gathers the user input."""
@@ -82,7 +80,6 @@ def notes_menu():
     notes.notes_setup()
     time.sleep(1)
     back()
-    put.user_input()
 
 def display_options():
     """This function displays the options menu."""
@@ -95,19 +92,10 @@ def help_page():
     """This function contains the documentation for how to use the RTTK application."""
     functions.set_ui()
 
+    documentation.help_setup()
+    put.user_input()
 
 
-    print(r"""
-    Commands
-        - 
-        - 
-        - 
-        
-    Flags
-        - 
-        - 
-        - 
-    """)
 
 def quit_app():
     """This function quits the RTTK application."""
