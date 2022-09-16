@@ -24,6 +24,7 @@ def command_db(menu):
     """This function contains all of the menus for the program."""
 
     command_list = {
+        # MENUS
         "main": ["clear", "cls"],
         "anonymity": ["ANONYMITY", "A"],
         "osint": ["OSINT", "O"],
@@ -34,5 +35,6 @@ def command_db(menu):
         "options": ["MENU SETTINGS", "PROXY SETTINGS", "NOTES SETTINGS", "BACK"],
         "help": ["HELP", "H"],
         "quit": ["QUIT", "Q"]
+        # TOOLS
     }
     return command_list[menu]
