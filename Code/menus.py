@@ -5,6 +5,7 @@
 """This module contains the menu class and all of the menus for the RTTK project."""
 import sys
 import functions
+from colors import Colors
 import put
 
 history = []
@@ -35,7 +36,7 @@ class Menu:
     def display_menu(self, name):
         """This function displays the menu for the menu class."""
         for _index, item in enumerate(menu_db(name)):
-            print(f"[+]   -->   {item}")
+            print(f"{Colors.white}[+]{Colors.end}{Colors.cyan}   -->   {item}{Colors.end}")
         print(" ")
 
     def user_input(self):
