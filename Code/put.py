@@ -14,7 +14,7 @@ def user_input():
     user_entry = str(input(f"\n{Colors.magenta}<>>> {Colors.end}"))
     # Defining the user input as user_selection in all lowercase for formating reasons.
     user_selection = user_entry.lower()
-    # the all lowercase user_selection input gets passed to  >>>  
+    # the all lowercase user_selection input gets passed to  >>>
     # the Menu_selection function in the menus module.
     menus.menu_setup(search_db(user_selection))
 

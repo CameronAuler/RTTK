@@ -33,9 +33,9 @@ class Menu:
     def display_menu(self, name):
         """This function displays the menu for the current menu for the RTTK project."""
         for _key, value in enumerate(app_data.menu_db(name)):
-                print(f"\n{Colors.white}[+]{Colors.end}{Colors.cyan}  -->    {value}{Colors.end}", end="")
-                for _key, value in enumerate(app_data.command_db(value.lower())):
-                    print(f"\t{Colors.black}   <{value}>{Colors.end}", end="")
+            print(f"\n{Colors.white}[+]{Colors.end}{Colors.cyan}  -->    {value}{Colors.end}", end="")
+            for _key, value in enumerate(app_data.command_db(value.lower())):
+                print(f"\t{Colors.black}   <{value}>{Colors.end}", end="")
 
 def menu_setup(name):
     """This function sets up each menu for the RTTK project."""

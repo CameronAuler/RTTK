@@ -75,4 +75,3 @@ def command_db(menu):
 def dict_db(menu):
     """This function contains all of the definitions for the program."""
     return dict_dict.get(menu)
-
