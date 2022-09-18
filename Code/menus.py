@@ -80,11 +80,16 @@ def menu_setup(name):
             help_page()
         elif name == "quit":
             quit_app()
+        elif name == "home":
+            home()
         else:
             print("INVALID COMMAND")
             time.sleep(1)
             back()
 
+def home():
+    """This command takes the user to the main menu."""
+    menu_setup("main")
 
 def back():
     """This function goes back to the last menu in the menu history of the RTTK project."""

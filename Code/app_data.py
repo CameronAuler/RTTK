@@ -5,16 +5,15 @@
 """This module contains the data required for the RTTK application. """
 
 menu_history = []
-command_history = []
+commands = ["help", "back", "home", "notes", "options"]
 
 menu_dict = {
         # Menus
-        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "HELP", "QUIT"],
+        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "QUIT"],
         "anonymity" : ["PROXY PONG"],
         "osint": ["SQUEEGEE", "NET SCAN", "CVE DB"],
         "probe": ["VULN SCAN"],
         "attack": ["CRACK"],
-        "commands": ["CLEAR", "BACK"]
     }
 
 command_dict = {
@@ -27,9 +26,10 @@ command_dict = {
         "notes": ["notes", "n"],
         "options": ["options", "opt"],
         "back": ["back", "b"],
-        "help": ["help", "h"],
+        "help": ["help", "-h"],
         "quit": ["quit", "q"],
         "clear": ["clear", "cls"],
+        "home": ["home", "h"],
         # TOOLS
         "net scan": ["nscan", "ns"],
         "proxy pong": ["xpong", "xp"],

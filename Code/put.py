@@ -4,6 +4,7 @@
 
 """This module contains all of the user input for the RTTK project."""
 
+import time
 import menus
 from colors import Colors
 import app_data
@@ -25,6 +26,7 @@ def search_db(user_selection):
         for item in value:
             if user_selection == item:
                 print(f"{Colors.green}SUCCESS >>>{Colors.end}")
+                time.sleep(0.1)
                 return key
             else:
                 pass

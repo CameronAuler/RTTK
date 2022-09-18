@@ -6,6 +6,7 @@
 
 import os
 import time
+import app_data
 from sys import platform
 import threading
 import options
@@ -41,6 +42,16 @@ $ ------------------------------------------------------------------------------
 $ ------------------------------------------------------------------------------------------ $
 $ ___________________CAMERON AULER_____________________CALEB DESRUISSEAUX___________________ $
 $ ------------------------------------------------------------------------------------------ $""")
+
+def hint():
+    """This function prints out the command hint on the top of the interface"""
+    for key, value in app_data.command_dict.items():
+        for item in value:
+            if key in app_data.commands:
+                print(f"{Colors.black}  <{item}>  {Colors.end}", end="")
+            else:
+                pass
+    print("")
 
 def load():
     """loading ASCII animation"""
@@ -88,4 +99,5 @@ def set_ui():
     """This function clears the window and sets the header."""
     clear()
     main_title()
+    hint()
     threader(load())
