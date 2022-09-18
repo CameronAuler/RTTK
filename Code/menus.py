@@ -43,7 +43,6 @@ def menu_setup(name):
         functions.set_ui()
     if isinstance(app_data.menu_dict.get(name), list):
         Menu().display_menu(name)
-        # check if there is anready an entry in history.
         record_menu_history(name)
         put.user_input()
     else:

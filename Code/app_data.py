@@ -13,12 +13,13 @@ menu_dict = {
         "anonymity" : ["PROXY PONG"],
         "osint": ["SQUEEGEE", "NET SCAN", "CVE DB"],
         "probe": ["VULN SCAN"],
-        "attack": ["CRACK"]
+        "attack": ["CRACK"],
+        "commands": ["CLEAR", "BACK"]
     }
 
 command_dict = {
         # MENUS
-        "main": ["clear", "cls"],
+        "main": [],
         "anonymity": ["anonymity", "a"],
         "osint": ["osint", "o"],
         "probe": ["probe", "p"],
@@ -28,6 +29,7 @@ command_dict = {
         "back": ["back", "b"],
         "help": ["help", "h"],
         "quit": ["quit", "q"],
+        "clear": ["clear", "cls"],
         # TOOLS
         "net scan": ["nscan", "ns"],
         "proxy pong": ["xpong", "xp"],
