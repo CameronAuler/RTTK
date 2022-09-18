@@ -4,35 +4,16 @@
 
 """This module contains the data required for the RTTK application. """
 
-import crack
-import cvedb
-import dos
-import krod
-import vscan
-import squeegee
-import proxy_pong
-import net_scan
-
 menu_history = []
 command_history = []
 
 menu_dict = {
         # Menus
-        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES"],
+        "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "HELP", "QUIT"],
         "anonymity" : ["PROXY PONG"],
         "osint": ["SQUEEGEE", "NET SCAN", "CVE DB"],
         "probe": ["VULN SCAN"],
-        "attack": ["CRACK"],
-        "nav function": ["BACK", "QUIT", "OPTIONS"],
-        # Tools
-        "net scan": net_scan.net_scan(),
-        "proxy pong": proxy_pong.proxy_pong(),
-        "squeegee": squeegee.squeegee(),
-        "vuln scan": vscan.vscan(),
-        "krod": krod.krod(),
-        "doS": dos.dos(),
-        "cve db": cvedb.cvedb(),
-        "crack": crack.crack()
+        "attack": ["CRACK"]
     }
 
 command_dict = {
@@ -43,8 +24,8 @@ command_dict = {
         "probe": ["probe", "p"],
         "attack": ["attack", "atk"],
         "notes": ["notes", "n"],
-        "back": ["back", "b"],
         "options": ["options", "opt"],
+        "back": ["back", "b"],
         "help": ["help", "h"],
         "quit": ["quit", "q"],
         # TOOLS

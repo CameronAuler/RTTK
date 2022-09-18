@@ -15,3 +15,4 @@ def help_setup():
     for key, _value in app_data.menu_dict.items():
         print(f"\n{Colors.magenta}{key.upper()}{Colors.end}     \t", end="")
         menus.Menu().display_menu(key)
+        print("\n")
