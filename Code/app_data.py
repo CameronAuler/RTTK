@@ -23,7 +23,7 @@ menu_dict = {
         "osint": ["SQUEEGEE", "NET SCAN", "CVE DB"],
         "probe": ["VULN SCAN"],
         "attack": ["CRACK"],
-        "nav_function": ["BACK", "QUIT", "OPTIONS"],
+        "nav function": ["BACK", "QUIT", "OPTIONS"],
         # Tools
         "net scan": net_scan.net_scan(),
         "proxy pong": proxy_pong.proxy_pong(),

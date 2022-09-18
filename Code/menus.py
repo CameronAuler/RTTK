@@ -14,6 +14,11 @@ import options
 import documentation
 
 import proxy_pong
+import squeegee
+import net_scan
+import cvedb
+import vscan
+import crack
 
 def record_menu_history(menu_record):
     """This function contains all of the menu history for the RTTK project."""
@@ -46,6 +51,26 @@ def menu_setup(name):
             record_menu_history(name)
             proxy_pong.proxy_pong()
             put.user_input()
+        elif name == "squeegee":
+            record_menu_history(name)
+            squeegee.squeegee()
+            put.user_input()
+        elif name == "net scan":
+            record_menu_history(name)
+            net_scan.net_scan()
+            put.user_input()
+        elif name == "cve db":
+            record_menu_history(name)
+            cvedb.cvedb()
+            put.user_input()
+        elif name == "vuln scan":
+            record_menu_history(name)
+            vscan.vscan()
+            put.user_input()
+        elif name == "crack":
+            record_menu_history(name)
+            crack.crack()
+            put.user_input()
         elif name == "back":
             back()
         elif name == "notes":
@@ -64,8 +89,11 @@ def menu_setup(name):
 
 def back():
     """This function goes back to the last menu in the menu history of the RTTK project."""
-    name = app_data.menu_history[-2]
-    app_data.menu_history.pop()
+    if len(app_data.menu_history) >= 2:
+        name = app_data.menu_history[-2]
+        app_data.menu_history.pop()
+    else:
+        name = "main"
     menu_setup(name)
 
 def notes_menu():
