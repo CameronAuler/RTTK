@@ -4,39 +4,27 @@
 
 """This module contains all of the user input for the RTTK project."""
 
-import time
 import menus
 from colors import Colors
 import app_data
 
 def user_input():
     """This function gathers the user input."""
+    # Input command retains user input from the terminal
     user_entry = str(input(f"\n{Colors.magenta}<>>> {Colors.end}"))
-    user_selection = user_entry.upper()
-    menu_selection(user_selection)
+    # Defining the user input as user_selection in all lowercase for formating reasons.
+    user_selection = user_entry.lower()
+    # the all lowercase user_selection input gets passed to  >>>  
+    # the Menu_selection function in the menus module.
+    menus.menu_setup(search_db(user_selection))
 
-def menu_selection(user_selection):
-    """This function translates the user input for the main menu."""
-    if user_selection == "ANONYMITY" or user_selection == "A":
-        menus.anonymity_menu()
-    elif user_selection == "OSINT" or user_selection == "O":
-        menus.osint_menu()
-    elif user_selection == "PROBE" or user_selection == "P":
-        menus.probe_menu()
-    elif user_selection == "ATTACK" or user_selection == "ATK":
-        menus.attack_menu()
-    elif user_selection == "NOTES" or user_selection == "N":
-        menus.notes_menu()
-    elif user_selection == "OPTIONS" or user_selection == "OPT":
-        menus.display_options()
-    elif user_selection == "BACK" or user_selection == "B":
-        menus.back()
-    elif user_selection == "HELP" or user_selection == "H":
-        menus.help_page()
-    elif user_selection == "QUIT" or user_selection == "Q":
-        menus.quit_app()
-    else:
-        print("INVALID COMMAND")
-        time.sleep(0.4)
-        menus.menu_setup(app_data.history[-1])
-        user_input()
+def search_db(user_selection):
+    """This function searches the command_dict to determine the menu or tool that the command runs"""
+    # searches through the command_dict for the commands associated with a specific key word.
+    for key, value in app_data.command_dict.items():
+        for item in value:
+            if user_selection == item:
+                print(f"{Colors.green}SUCCESS >>>{Colors.end}")
+                return key
+            else:
+                pass
