@@ -116,7 +116,6 @@ def display_options():
 
 def help_page():
     """This function contains the documentation for how to use the RTTK application."""
-    functions.set_ui()
 
     documentation.help_setup()
     put.user_input()
