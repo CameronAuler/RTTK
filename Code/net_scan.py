@@ -5,15 +5,11 @@
 """This is the net_scan module: the RTTK project"""
 
 import time
-import sys
 import socket
+import sys
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
-import threading
-import pyfiglet
-import functions
 import options
-import psutil
 
 open_ports = []
 
