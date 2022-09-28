@@ -56,6 +56,7 @@ def menu_setup(name):
             put.user_input()
         elif name == "net scan":
             record_menu_history(name)
+            functions.ascii_header(name)
             net_scan.net_scan()
             put.user_input()
         elif name == "cve db":

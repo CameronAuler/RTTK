@@ -3,6 +3,8 @@
 # Cameron Auler
 
 """This module contains all of the settings for the RTTK project."""
+import psutil
+# 65535
 
 def options(setting):
     """This function defines settings for RTTK."""
@@ -10,9 +12,9 @@ def options(setting):
         "menu_length": 94,
         "load_time": 0.005,
         "set_speed": True,
-        "thread_limit": 20,
-        "cores": 12,
-        "port_limit": 65535,
+        "thread_limit": int(psutil.cpu_count() / psutil.cpu_count(logical=False)),
+        "cores": psutil.cpu_count(),
+        "port_limit": 1024,
         "notes_directory": "add directory here . . ."
     }
     return opts[setting]

@@ -9,6 +9,7 @@ import time
 import app_data
 from sys import platform
 import threading
+import pyfiglet
 import options
 from colors import Colors
 
@@ -99,4 +100,10 @@ def set_ui():
     clear()
     main_title()
     hint()
-    threader(load())
+    load()
+
+def ascii_header(name):
+    clear()
+    print(pyfiglet.figlet_format(name, font="isometric3"))
+    load()
+    

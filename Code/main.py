@@ -5,9 +5,10 @@
 """This is the main menu module for the RTTK project."""
 import menus
 import functions
+import psutil
 
 #
-# Code efficiency tasks . .ns
+# Code efficiency tasks . . .
 #  .
 #    - Make menu_setup() function reliable on the command_db
 #    and user input to reduce the amount of menu functions in menus.py
@@ -21,7 +22,7 @@ import functions
 def main():
     """__main__"""
     # Loading animation
-    functions.threader(functions.load())
+    functions.load()
     # Setup the menu
     menus.menu_setup('main')
 
