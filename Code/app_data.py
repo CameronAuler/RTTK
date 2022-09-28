@@ -26,10 +26,10 @@ command_dict = {
         "notes": ["notes", "n"],
         "options": ["options", "opt"],
         "back": ["back", "b"],
-        "help": ["help", "-h"],
+        "help": ["help", "h"],
         "quit": ["quit", "q"],
         "clear": ["clear", "cls"],
-        "home": ["home", "h"],
+        "home": ["home", "main"],
         # TOOLS
         "net scan": ["nscan", "ns"],
         "proxy pong": ["xpong", "xp"],
@@ -54,11 +54,11 @@ dict_dict = {
         "help": "",
         "quit": "",
         # TOOLS
-        "net scan": "",
+        "net scan": "Network scanner.",
         "proxy pong": "",
-        "squeegee": "Web & Email Scraper",
-        "vuln scan": "",
-        "krod": "",
+        "squeegee": "Web & Email scraper.",
+        "vuln scan": "Vulnerability scanner.",
+        "krod": "Google OSINT tool.",
         "doS": "dos.dos()",
         "cve db": "",
         "crack": ""

@@ -12,9 +12,14 @@ from concurrent.futures import ThreadPoolExecutor
 import nmap
 import options
 
+# Stores the open ports for the program
 open_ports = []
 
 def thread_pooler(fun, target, port):
+    """This function uses multi-threading to speed up the scanning process"""
+    # Thread_pooler() is different from normal threading because it allows parameters to be passed with the funciton being threaded.
+    
+    # This variable creates a thread pool with the maximum amount of threads being 
     pool = ThreadPoolExecutor(options.options("thread_limit"))
     
     for _ in range(options.options("thread_limit")):
@@ -51,15 +56,19 @@ def tcp_scanner(target, port):
         result = s.connect_ex((target, port))
         if result == 0 and port not in open_ports:
             open_ports.append(port)
-            print(f"Port {open_ports[-1]} is open running {socket.getservbyport(open_ports[-1])}")
-            print(f"Blocking: {socket.getblocking()}")
-            pass
+            print(f"Port {open_ports[-1]} is open:", end="")
+            if socket.getservbyport(open_ports[-1]):
+                print(f"running {socket.getservbyport(open_ports[-1])}")
+            else:
+                print(f"Port {open_ports[-1]} running no service.")
         s.close()
+        
     except KeyboardInterrupt:
         print("\n Exiting :(")
         sys.exit()
         pass
     except socket.error:
+        print("Something went wrong :(")
         pass
     
         
