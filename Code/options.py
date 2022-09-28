@@ -12,6 +12,7 @@ def options(setting):
         "set_speed": True,
         "thread_limit": 20,
         "cores": 12,
+        "port_limit": 65535,
         "notes_directory": "add directory here . . ."
     }
     return opts[setting]

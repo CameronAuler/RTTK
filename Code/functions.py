@@ -90,7 +90,6 @@ def threader(fun):
         timer = t_stop - t_start
         print(f"  >>  LOAD TIME: {round(timer, 4)}")
         print()
-
     else:
         print("THREAD STATUS: NOT THREADED")
         print()
