@@ -5,6 +5,8 @@
 """This module contains all of the settings for the RTTK project."""
 import psutil
 
+# 65535
+
 def options(setting):
     """This function defines settings for RTTK."""
     opts = {
@@ -13,7 +15,7 @@ def options(setting):
         "set_speed": True,
         "thread_limit": int(psutil.cpu_count() / psutil.cpu_count(logical=False)),
         "cores": psutil.cpu_count(),
-        "port_limit": 65535,
+        "port_limit": 1024,
         "notes_directory": "add directory here . . ."
     }
     return opts[setting]

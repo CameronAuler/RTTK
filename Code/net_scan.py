@@ -9,6 +9,7 @@ import socket
 import sys
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
+import nmap
 import options
 
 open_ports = []
@@ -50,14 +51,15 @@ def tcp_scanner(target, port):
         result = s.connect_ex((target, port))
         if result == 0 and port not in open_ports:
             open_ports.append(port)
-            print(f"Port {open_ports[-1]} is open.")
+            print(f"Port {open_ports[-1]} is open running {socket.getservbyport(open_ports[-1])}")
+            print(f"Blocking: {socket.getblocking()}")
             pass
         s.close()
     except KeyboardInterrupt:
         print("\n Exiting :(")
+        sys.exit()
         pass
     except socket.error:
-        print("\ Host not responding :(")
         pass
     
         
