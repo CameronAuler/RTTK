@@ -39,6 +39,7 @@ class Menu:
 
 def menu_setup(flag_list):
     """This function sets up each menu for the RTTK project."""
+    print(flag_list)
     name = flag_list[0]
     functions.set_ui()
     
@@ -64,7 +65,6 @@ def menu_setup(flag_list):
         Menu().display_menu(name)
         put.user_input()
     else:
-        name_search = put.search_db(name)
         record_menu_history([name])
         if name == "proxy pong":
             proxy_pong.proxy_pong()

@@ -18,7 +18,7 @@ def user_input():
     flag_list = user_entry.split()
     name = flag_list[0].lower()
     # the all lowercase user_selection input gets passed to  >>>
-    if len(flag_list) > 1:
+    if len(flag_list) > 1 and search_db(name) in app_data.command_dict:
         # the Menu_selection function in the menus module.
         flag_list[0] = search_db(name)
         menus.menu_setup(flag_list)
@@ -27,11 +27,14 @@ def user_input():
 
 def command_input():
     command = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}NET SCAN{Colors.end}{Colors.magenta}>>> {Colors.end}"))
+    
     flags = command.split()
-    name_search = put.search_db(flags[0])
-    flags[0] = name_search
-    print(flags)
-    return flags
+    command_search = put.search_db(flags[0])
+    if command_search in app_data.command_dict.get('main'):
+        flags = [command_search]
+        menus.menu_setup(flags)
+    else:
+        return flags
 
 def search_db(user_selection):
     """This function searches the command_dict to determine the menu or tool that the command runs"""

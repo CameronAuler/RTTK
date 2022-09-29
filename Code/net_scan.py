@@ -103,10 +103,10 @@ def net_scan(flag_list):
     open_ports.clear()
     
     if len(flag_list) == 1:
-        net_scan(flag_list + put.command_input())
-    elif len(flag_list) == 3 and flag_list[2] == "-tcp":
-        print(flag_list[1])
-        time.sleep(2)
+        menus.menu_setup(flag_list + put.command_input())
+    elif len(flag_list) == 3 and "-tcp" in flag_list:
+        
+        print("running tcp scan")
         threader(tcp_scanner, flag_list[1])
         net_scan_prompt(flag_list)
     elif len(flag_list) == 3 and flag_list[2] == "-sv":
@@ -115,8 +115,6 @@ def net_scan(flag_list):
     elif len(flag_list) == 2 and flag_list[1] == "-q":
         menus.back()
     else:
-        net_scan(flag_list)
+        print("there is no statement for this")
+        net_scan_prompt(flag_list)
         
-    
-    
-    
