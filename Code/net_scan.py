@@ -33,10 +33,13 @@ def thread_pooler(fun, target, port):
 
 
 def tcp_scanner(target, port):    
+    """This function takes a target IP and a port and determins if the port is open"""
+    # Attempts a connection to the target host over the given port
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        socket.setdefaulttimeout(0.1)
+        socket.setdefaulttimeout(0.2)
         
+        # Initiates the connection
         result = s.connect_ex((target, port))
         if result == 0 and port not in open_ports:
             open_ports.append(port)
