@@ -8,6 +8,7 @@ import time
 import menus
 from colors import Colors
 import app_data
+import put
 
 def user_input():
     """This function gathers the user input."""
@@ -19,6 +20,7 @@ def user_input():
     # the all lowercase user_selection input gets passed to  >>>
     if len(flag_list) > 1:
         # the Menu_selection function in the menus module.
+        flag_list[0] = search_db(name)
         menus.menu_setup(flag_list)
     else:
         menus.menu_setup([search_db(name)])
@@ -26,6 +28,9 @@ def user_input():
 def command_input():
     command = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}NET SCAN{Colors.end}{Colors.magenta}>>> {Colors.end}"))
     flags = command.split()
+    name_search = put.search_db(flags[0])
+    flags[0] = name_search
+    print(flags)
     return flags
 
 def search_db(user_selection):

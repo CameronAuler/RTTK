@@ -41,27 +41,30 @@ def menu_setup(flag_list):
     """This function sets up each menu for the RTTK project."""
     name = flag_list[0]
     functions.set_ui()
-
+    
+    for item in flag_list:
+        if item in app_data.command_dict.get("main"):
+            if name == "back":
+                back()
+            elif name == "help":
+                help_page()
+            elif name == "home":
+                home()
+            elif name == "notes":
+                notes_menu()
+            elif name == "options":
+                display_options()
+            elif name == "quit":
+                quit_app()
+            else:
+                pass
+    
     if isinstance(app_data.menu_dict.get(name), list):
         record_menu_history([name])
         Menu().display_menu(name)
         put.user_input()
-    elif name in app_data.command_dict.get("main"):
-        if name == "back":
-            back()
-        elif name == "help":
-            help_page()
-        elif name == "home":
-            home()
-        elif name == "notes":
-            notes_menu()
-        elif name == "options":
-            display_options()
-        elif name == "quit":
-            quit_app()
-        else:
-            pass
     else:
+        name_search = put.search_db(name)
         record_menu_history([name])
         if name == "proxy pong":
             proxy_pong.proxy_pong()
@@ -71,8 +74,6 @@ def menu_setup(flag_list):
             put.user_input()
             
         elif name == "net scan":
-            print("flag list before", flag_list)
-            time.sleep(1)
             net_scan.net_scan(flag_list)
         
         
@@ -89,9 +90,8 @@ def menu_setup(flag_list):
             put.user_input()
         else:
             print(name)
-            print(type(name))
             print("INVALID COMMAND")
-            time.sleep(3)
+            time.sleep(2)
             back()
 
 def home():

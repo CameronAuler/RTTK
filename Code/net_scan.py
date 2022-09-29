@@ -29,6 +29,9 @@ def thread_pooler(fun, target, port):
         task = pool.submit(fun, target, port)
 
 
+
+
+
 def tcp_scanner(target, port):    
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -46,6 +49,9 @@ def tcp_scanner(target, port):
     except socket.error:
         print("Something went wrong :(")
         pass
+
+
+
 
 def service_scanner(target, port):    
     try:
@@ -65,6 +71,9 @@ def service_scanner(target, port):
         print("Something went wrong :(")
         pass
 
+
+
+
 def threader(fun, target):
     if options.options("set_speed") is True:
         t_start = time.perf_counter()
@@ -78,17 +87,26 @@ def threader(fun, target):
         for port in range(1, options.options("port_limit")):
             fun(target, port)
 
+
+
+
 def net_scan_prompt(flag_list):
     flag_list = [flag_list[0]]
     flags = flag_list + put.command_input()
     menus.menu_setup(flags)
 
+
+
+
 def net_scan(flag_list):
     """This function runs the netscan program: the RTTK project"""
     open_ports.clear()
+    
     if len(flag_list) == 1:
         net_scan(flag_list + put.command_input())
     elif len(flag_list) == 3 and flag_list[2] == "-tcp":
+        print(flag_list[1])
+        time.sleep(2)
         threader(tcp_scanner, flag_list[1])
         net_scan_prompt(flag_list)
     elif len(flag_list) == 3 and flag_list[2] == "-sv":
@@ -97,7 +115,7 @@ def net_scan(flag_list):
     elif len(flag_list) == 2 and flag_list[1] == "-q":
         menus.back()
     else:
-        put.user_input()
+        net_scan(flag_list)
         
     
     
