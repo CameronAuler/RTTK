@@ -61,6 +61,13 @@ def load():
         print(f"{Colors.red}>>>{Colors.end}", end="")
     print("$")
 
+def tool_load():
+    """loading ASCII animation"""
+    for _each_number in range(int(options.options("menu_length") / 3)):
+        time.sleep(options.options("load_time"))
+        print(f"{Colors.blue}>>>{Colors.end}", end="")
+    print("$")
+
 def clear():
     """This function clears the terminal window."""
     if platform == "linux" or platform == "linux2":

@@ -18,7 +18,7 @@ menu_dict = {
 
 command_dict = {
         # MENUS
-        "main": [],
+        "main": ["help", "back", "home", "notes", "options"],
         "anonymity": ["anonymity", "a"],
         "osint": ["osint", "o"],
         "probe": ["probe", "p"],

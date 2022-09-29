@@ -14,10 +14,19 @@ def user_input():
     # Input command retains user input from the terminal
     user_entry = str(input(f"\n{Colors.magenta}<>>> {Colors.end}"))
     # Defining the user input as user_selection in all lowercase for formating reasons.
-    user_selection = user_entry.lower()
+    flag_list = user_entry.split()
+    name = flag_list[0].lower()
     # the all lowercase user_selection input gets passed to  >>>
-    # the Menu_selection function in the menus module.
-    menus.menu_setup(search_db(user_selection))
+    if len(flag_list) > 1:
+        # the Menu_selection function in the menus module.
+        menus.menu_setup(flag_list)
+    else:
+        menus.menu_setup([search_db(name)])
+
+def command_input():
+    command = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}NET SCAN{Colors.end}{Colors.magenta}>>> {Colors.end}"))
+    flags = command.split()
+    return flags
 
 def search_db(user_selection):
     """This function searches the command_dict to determine the menu or tool that the command runs"""

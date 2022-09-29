@@ -24,7 +24,7 @@ def main():
     # Loading animation
     functions.load()
     # Setup the menu
-    menus.menu_setup('main')
+    menus.menu_setup(['main'])
 
 if __name__ == "__main__":
     main()

@@ -37,60 +37,68 @@ class Menu:
             for _key, value in enumerate(app_data.command_db(value.lower())):
                 print(f"\t{Colors.black}   <{value}>{Colors.end}", end="")
 
-def menu_setup(name):
+def menu_setup(flag_list):
     """This function sets up each menu for the RTTK project."""
-    if name != "back":
-        functions.set_ui()
+    name = flag_list[0]
+    functions.set_ui()
+
     if isinstance(app_data.menu_dict.get(name), list):
+        record_menu_history([name])
         Menu().display_menu(name)
-        record_menu_history(name)
         put.user_input()
-    else:
-        if name == "proxy pong":
-            record_menu_history(name)
-            proxy_pong.proxy_pong()
-            put.user_input()
-        elif name == "squeegee":
-            record_menu_history(name)
-            squeegee.squeegee()
-            put.user_input()
-        elif name == "net scan":
-            record_menu_history(name)
-            functions.ascii_header(name)
-            net_scan.net_scan()
-            put.user_input()
-        elif name == "cve db":
-            record_menu_history(name)
-            cvedb.cvedb()
-            put.user_input()
-        elif name == "vuln scan":
-            record_menu_history(name)
-            vscan.vscan()
-            put.user_input()
-        elif name == "crack":
-            record_menu_history(name)
-            crack.crack()
-            put.user_input()
-        elif name == "back":
+    elif name in app_data.command_dict.get("main"):
+        if name == "back":
             back()
+        elif name == "help":
+            help_page()
+        elif name == "home":
+            home()
         elif name == "notes":
             notes_menu()
         elif name == "options":
             display_options()
-        elif name == "help":
-            help_page()
         elif name == "quit":
             quit_app()
-        elif name == "home":
-            home()
         else:
-            print("INVALID COMMAND")
+            pass
+    else:
+        record_menu_history([name])
+        if name == "proxy pong":
+            proxy_pong.proxy_pong()
+            put.user_input()
+        elif name == "squeegee":
+            squeegee.squeegee()
+            put.user_input()
+            
+        elif name == "net scan":
+            print("flag list before", flag_list)
             time.sleep(1)
+            net_scan.net_scan(flag_list)
+        
+        
+        elif name == "cve db":
+            cvedb.cvedb()
+            put.user_input()
+
+        elif name == "vuln scan":
+            vscan.vscan()
+            put.user_input()
+
+        elif name == "crack":
+            crack.crack()
+            put.user_input()
+        else:
+            print(name)
+            print(type(name))
+            print("INVALID COMMAND")
+            time.sleep(3)
             back()
 
 def home():
     """This command takes the user to the main menu."""
-    menu_setup("main")
+    functions.set_ui()
+    Menu().display_menu("main")
+    put.user_input()
 
 def back():
     """This function goes back to the last menu in the menu history of the RTTK project."""
@@ -98,7 +106,7 @@ def back():
         name = app_data.menu_history[-2]
         app_data.menu_history.pop()
     else:
-        name = "main"
+        name = ["main"]
     menu_setup(name)
 
 def notes_menu():
@@ -126,3 +134,5 @@ def quit_app():
     print("Quiting >>>")
     functions.threader(functions.load())
     sys.exit()
+    
+    
