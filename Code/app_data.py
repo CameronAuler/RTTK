@@ -11,9 +11,9 @@ menu_dict = {
         # Menus
         "main": ["ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "QUIT"],
         "anonymity" : ["PROXY PONG"],
-        "osint": ["SQUEEGEE", "NET SCAN", "CVE DB"],
-        "probe": ["VULN SCAN"],
-        "attack": ["CRACK"],
+        "osint": ["DNUM", "SQUEEGEE", "NET SCAN", "CVE DB"],
+        "probe": ["VULN SCAN", "pyfi"],
+        "attack": ["CRACK", "BRUTUS"],
     }
 
 command_dict = {
@@ -31,6 +31,8 @@ command_dict = {
         "clear": ["clear", "cls"],
         "home": ["home", "main"],
         # TOOLS
+        "pyfi": ["pyfi", "pi"],
+        "dnum": ["dnum", "dn"],
         "net scan": ["nscan", "ns"],
         "proxy pong": ["xpong", "xp"],
         "squeegee": ["squg", "sq"],
@@ -38,7 +40,8 @@ command_dict = {
         "krod": ["krod", "kd"],
         "doS": ["dos", "ds"],
         "cve db": ["cvb", "cb"],
-        "crack": ["crack", "ck"]
+        "crack": ["crack", "ck"],
+        "brutus": ["brute", "bt"]
     }
 
 dict_dict = {

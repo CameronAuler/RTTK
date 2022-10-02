@@ -6,8 +6,6 @@
 
 import time
 
-print("This is the proxy pong program running >>>")
-
 def proxy_pong():
     """This function runs the proxy_pong program: the RTTK project"""
     print("Running proxy_pong >>>")

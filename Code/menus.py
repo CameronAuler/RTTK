@@ -18,6 +18,7 @@ import squeegee
 import net_scan
 import cvedb
 import vscan
+import pyfi
 import crack
 
 def record_menu_history(menu_record):
@@ -39,7 +40,6 @@ class Menu:
 
 def menu_setup(flag_list):
     """This function sets up each menu for the RTTK project."""
-    print(flag_list)
     name = flag_list[0]
     functions.set_ui()
     
@@ -83,6 +83,10 @@ def menu_setup(flag_list):
 
         elif name == "vuln scan":
             vscan.vscan()
+            put.user_input()
+        
+        elif name == "pyfi":
+            pyfi.pyfi()
             put.user_input()
 
         elif name == "crack":
