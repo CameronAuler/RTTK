@@ -38,66 +38,71 @@ class Menu:
             for _key, value in enumerate(app_data.command_db(value.lower())):
                 print(f"\t{Colors.black}   <{value}>{Colors.end}", end="")
 
+# Main Navigational Function coordinates menus with commands
 def menu_setup(flag_list):
-    """This function sets up each menu for the RTTK project."""
+    """menu_setup() is the main Navigational Function that coordinates menus with commands."""
+    
+    # Fixes the double load animation due to loading 2 menus consecutively
     name = flag_list[0]
-    functions.set_ui()
-    
-    for item in flag_list:
-        if item in app_data.command_dict.get("main"):
-            if name == "back":
-                back()
-            elif name == "help":
-                help_page()
-            elif name == "home":
-                home()
-            elif name == "notes":
-                notes_menu()
-            elif name == "options":
-                display_options()
-            elif name == "quit":
-                quit_app()
-            else:
-                pass
-    
-    if isinstance(app_data.menu_dict.get(name), list):
-        record_menu_history([name])
-        Menu().display_menu(name)
-        put.user_input()
+    if name != "back":
+        functions.set_ui()
     else:
+        pass
+    
+    # If the name of the tool/menu is in the menu_dict dictionary in app_data and its value is a list
+    if isinstance(app_data.menu_dict.get(name), list):
+        # Record the name of the tool/menu in memory
         record_menu_history([name])
-        if name == "proxy pong":
-            proxy_pong.proxy_pong()
-            put.user_input()
-        elif name == "squeegee":
-            squeegee.squeegee()
-            put.user_input()
-            
-        elif name == "net scan":
-            net_scan.net_scan(flag_list)
-        
-        
-        elif name == "cve db":
-            cvedb.cvedb()
-            put.user_input()
+        # Displays the menu corresponding with name
+        Menu().display_menu(name)
+        # Prompts user input
+        put.user_input()
+    
+    # Tools
+    elif name == "proxy pong":
+        record_menu_history([name])
+        proxy_pong.proxy_pong()
+        put.user_input()
+    elif name == "squeegee":
+        squeegee.squeegee()
+        put.user_input()
+    elif name == "net scan":
+        net_scan.net_scan(flag_list)
+    elif name == "cve db":
+        cvedb.cvedb()
+        put.user_input()
+    elif name == "vuln scan":
+        vscan.vscan()
+        put.user_input()
+    elif name == "pyfi":
+        pyfi.pyfi()
+        put.user_input()
+    elif name == "crack":
+        crack.crack()
+        put.user_input()
+    
+    #Menu Functions
+    # Elif name matches any of these string values run specific menu functionalities corresponding to name
+    elif name == "back":
+        back()
+    elif name == "help":
+        help_page()
+    elif name == "home":
+        home()
+    elif name == "notes":
+        notes_menu()
+    elif name == "options":
+        display_options()
+    elif name == "quit":
+        quit_app()
+    else:
+        print(name)
+        print("INVALID COMMAND")
+        time.sleep(2)
+        back()
 
-        elif name == "vuln scan":
-            vscan.vscan()
-            put.user_input()
-        
-        elif name == "pyfi":
-            pyfi.pyfi()
-            put.user_input()
 
-        elif name == "crack":
-            crack.crack()
-            put.user_input()
-        else:
-            print(name)
-            print("INVALID COMMAND")
-            time.sleep(2)
-            back()
-
+# MENU FUNCTIONALITY
 def home():
     """This command takes the user to the main menu."""
     functions.set_ui()

@@ -5,7 +5,7 @@
 """This module contains the data required for the RTTK application. """
 
 menu_history = []
-commands = ["help", "back", "home", "notes", "options"]
+commands = ["help", "back", "notes", "options", "clear"]
 
 menu_dict = {
         # Menus
@@ -29,7 +29,7 @@ command_dict = {
         "help": ["help", "h"],
         "quit": ["quit", "q"],
         "clear": ["clear", "cls"],
-        "home": ["home", "main"],
+        "home": ["home"],
         # TOOLS
         "pyfi": ["pyfi", "pi"],
         "dnum": ["dnum", "dn"],
@@ -44,27 +44,18 @@ command_dict = {
         "brutus": ["brute", "bt"]
     }
 
-dict_dict = {
-        # MENUS
-        "main": "",
-        "anonymity": "",
-        "osint": "",
-        "probe": "",
-        "attack": "",
-        "notes": "",
-        "back": "",
-        "options": "",
-        "help": "",
-        "quit": "",
-        # TOOLS
-        "net scan": "Network scanner.",
-        "proxy pong": "",
-        "squeegee": "Web & Email scraper.",
-        "vuln scan": "Vulnerability scanner.",
-        "krod": "Google OSINT tool.",
-        "doS": "dos.dos()",
-        "cve db": "",
-        "crack": ""
+tool_dict = {
+        "pyfi": ["pyfi", "pi"],
+        "dnum": ["dnum", "dn"],
+        "net scan": ["nscan", "ns"],
+        "proxy pong": ["xpong", "xp"],
+        "squeegee": ["squg", "sq"],
+        "vuln scan": ["Vscan", "vs"],
+        "krod": ["krod", "kd"],
+        "doS": ["dos", "ds"],
+        "cve db": ["cvb", "cb"],
+        "crack": ["crack", "ck"],
+        "brutus": ["brute", "bt"]
     }
 
 def menu_db(menu):
@@ -74,7 +65,3 @@ def menu_db(menu):
 def command_db(menu):
     """This function contains all of the menus for the program."""
     return command_dict.get(menu)
-
-def dict_db(menu):
-    """This function contains all of the definitions for the program."""
-    return dict_dict.get(menu)

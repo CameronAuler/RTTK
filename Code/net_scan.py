@@ -31,7 +31,6 @@ def thread_pooler(fun, target, port):
 
 
 
-
 def tcp_scanner(target, port):    
     """This function takes a target IP and a port and determins if the port is open"""
     # Attempts a connection to the target host over the given port
@@ -98,17 +97,35 @@ def net_scan_prompt(flag_list):
     flags = flag_list + put.command_input()
     menus.menu_setup(flags)
 
-
+def ns_help():
+    print(r"""
+        Flags:
+          
+            -tcp --> tcp scan.
+            -sv  --> port service scan.
+            -p   --> specify a port or range of ports, -p 10-1000
+        
+        Examples:
+        
+            From RTTK main --> netscan 10.10.10.10 -tcp
+            From NETSCAN   --> 10.10.10.10 -sv
+          """)
 
 
 def net_scan(flag_list):
-    """This function runs the netscan program: the RTTK project"""
+    """net_scan() recieves a list of flags, example '-tcp', and their values."""
+    # Clear the global list Open_ports
+    # Recommended to change this to a different data structure because lists are inefficiient with memory.
     open_ports.clear()
     
+    # If there is one item in the list...
     if len(flag_list) == 1:
-        menus.menu_setup(flag_list + put.command_input())
+        ns_help()
+        flags = put.command_input()
+        flag_list.extend(flags)
+        net_scan(flag_list)
+        # menus.menu_setup(flag_list + put.command_input())
     elif len(flag_list) == 3 and "-tcp" in flag_list:
-        
         print("running tcp scan")
         threader(tcp_scanner, flag_list[1])
         net_scan_prompt(flag_list)
