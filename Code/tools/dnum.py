@@ -1,3 +1,4 @@
+"""
 import dns.resolver
 import sys
 
@@ -22,3 +23,4 @@ for records in record_types:
     except KeyboardInterrupt:
         print('Quitting.')
         quit()
+"""

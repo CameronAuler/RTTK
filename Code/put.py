@@ -5,6 +5,7 @@
 """This module contains all of the user input for the RTTK project."""
 
 import time
+import argparse
 import menus
 from colors import Colors
 import app_data

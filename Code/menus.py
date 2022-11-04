@@ -13,13 +13,7 @@ import app_data
 import options
 import documentation
 
-import proxy_pong
-import squeegee
-import net_scan
-import cvedb
-import vscan
-import pyfi
-import crack
+from tools import *
 
 def record_menu_history(menu_record):
     """This function contains all of the menu history for the RTTK project."""

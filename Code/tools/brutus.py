@@ -1,7 +1,7 @@
 import random
 import string
 import itertools
-import tqdm
+# import tqdm
 import time
 
 characters = string.printable[:95]

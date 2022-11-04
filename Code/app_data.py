@@ -16,6 +16,7 @@ menu_dict = {
         "attack": ["CRACK", "BRUTUS"],
     }
 
+# Dictionary containing all of the possible commands for a each utility and tool
 command_dict = {
         # MENUS
         "main": ["help", "back", "home", "notes", "options"],
