@@ -4,20 +4,12 @@
 
 """This is the main menu module for the RTTK project."""
 import sys
-import menus
-import functions
+import time
+import put
 
 def rttk():
-    """__main__"""
-    
-    if len(sys.argv) > 1:
-        print("Command Passed through command line with the following arguments . . .")
-        print(sys.argv)
-    else:
-        # Loading animation
-        functions.load()
-        # Setup the menu
-        menus.menu_setup(['main'])
+    """Main RTTK function"""
+    put.input_processor(sys.argv)
 
 if __name__ == "__main__":
     rttk()
