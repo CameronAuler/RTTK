@@ -11,6 +11,7 @@ import sys
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 import scapy.all as scapy
+import app_data
 import options
 import put
 import menus
@@ -109,43 +110,41 @@ def ns_input(flag):
     add_flag = tuple(flag_list)
     flag = flag + add_flag
     flags = tuple(flag)
-    print(flags,type(flags))
-    return flags
+    net_scan(flags)
 
 def net_scan(flags):
     """net_scan() recieves a list of flags, example '-tcp', and their values."""
     # Clear the global list Open_ports
     # Recommended to change this to a different data structure because lists are inefficiient with memory.
+    
     open_ports.clear()
-    ns_help()
     
-    if flags[1] == 'q' or flags[1] == 'quit':
-        menus.quit()
-    
-    # If there is one item in the list...
-    if len(flags) >= 1 and len(flags) <= 2:
-        print("NEED MORE INFO: Specify <IP ADDRESS> <PORTS>")
+    if len(flags) < 1:
         ns_help()
-        net_scan(flags)
-    elif len(flags) == 3:
-        # Convert port number to int range
+        ns_input(flags)
+        
+    elif 'q' in flags or 'quit' in flags:
+        menus.quit()
+        
+    elif len(flags) >= 1 and len(flags) < 3 and flags[0] in app_data.tool_dict['net scan']:
+        ns_help()
+        print('More info needed.')
+        ns_input(flags)
+        
+    elif len(flags) == 3 and flags[0] in app_data.tool_dict['net scan'][0]:
         if '-' in flags[2]:
             port_range_split = tuple(flags[2].split('-'))
             port_to_int = (flags[0], flags[1],  port_range_split)
             flags = port_to_int
-            print(flags, type(flags[2]))
         else:
             port_to_int = (flags[0], flags[1], int(flags[2]))
             flags = port_to_int
-            print(flags, type(flags[2]))
         
         if flags[0] == 'arp':
             arp_scan(flags[0], flags[1], flags[2])
         elif flags[0] == 'tcp':
             threader(tcp_scan('127.0.0.1', 22), '127.0.0.1', (0, 1000))
-            # threader(tcp_scan(flags[1], flags[2]), flags[1])
         elif flags[0] == 'sv' or flags[0] == 'service':
-            # menus.menu_setup(flag_list + put.command_input())
             print('running service scan')
     else:
-        print('COMMAND ERROR')
+        print('Passing more than 3 arguments to net scan is not yet implemented.')

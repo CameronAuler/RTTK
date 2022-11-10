@@ -22,16 +22,10 @@ def user_input():
     
     # Seperates the input string using spaces as deviders and stores values in a list
     command_list = user_entry.split()
-    print(command_list)
-    time.sleep(2)
     
     # Searches the command in the command database for the corresponding menu/tool and converts the input to the menu/tool name
     cmd = command_list[0]
-    print(cmd)
-    time.sleep(2)
     command_list[0] = search_db(cmd)
-    print(command_list[0], type(command_list[0]))
-    time.sleep(2)
     
     # Converts the list of seperated flags into a tuple for more efficient handling
     command = tuple(command_list)
@@ -63,9 +57,39 @@ def search_db(user_selection):
             else:
                 pass
 
+def tool_cmd_eval(tool, flags):
+            if tool == 'proxy pong':
+                proxy_pong.proxy_pong()
+            elif tool == 'dnum':
+                dnum.dnum()
+            elif tool == 'sqeegee':
+                squeegee.squeegee()
+            elif tool == 'net scan':
+                net_scan.net_scan(flags)
+            elif tool == 'cve db':
+                cvedb.cvedb()
+            elif tool == 'vuln scan':
+                vscan.vscan()  
+            elif tool  == 'pyfi':
+                pyfi.pyfi()
+            elif tool == 'crack':
+                crack.crack()
+            elif tool == 'brutus':
+                brutus.brutus()
+
+def fun_cmd_eval(utility):
+    if utility == 'home':
+        menus.home()
+    elif utility == 'back':
+        menus.back()
+    elif utility =='quit':
+        menus.quit()
+
+
 
 
 def input_processor(command):
+    '''This function processes all of the input for RTTK through the CLI and through shell mode.'''
     # Convert list to tuple (for sys.argv list)
     if isinstance(command, list):
         temporary_tuple = command
@@ -76,40 +100,37 @@ def input_processor(command):
     # References the parent command of the input
     parent_cmd = command[0]
     
-    if len(command) > 1:
-        flags = command[1:]
-        print(f'these are the flags passed to net scan: {flags}')
-    
-    # CLI PROCESSING
-    # Checks for the RTTK shell mode initiation (only rttk.py passed as an argument)
+        # CLI PROCESSING
+        # If the program was run through the CLI
     if parent_cmd == 'rttk.py' or parent_cmd == 'c:\\Users\\CM8817\\Github\\RTTK\\Code\\rttk.py':
+        # Checks for the RTTK shell mode initiation (only rttk.py passed as an argument)
         if len(command) == 1:
             menus.home()
-        elif len(command) == 2:
+        elif len(command) >= 2:
+            # Sets the name of the tool to the variable tool
             tool = search_db(command[1])
-            if tool == 'net scan':
-                net_scan.net_scan()
-    else:
-        pass
+            flags = command[2:]
+            print(flags)
+            time.sleep(2)
+            tool_cmd_eval(tool, flags)
+
+    # SHELL UTILITY PROCESSING
+    elif parent_cmd in app_data.command_dict['home']:
+        fun_cmd_eval(parent_cmd)
     
-    if len(command) <= 6:
-        # SHELL PROCESSING
-        if parent_cmd == 'home':
-            menus.home()
+    # SHELL MENU PROCESSING
+    elif parent_cmd in app_data.menu_dict:
+        # Record the name of the tool/menu in history list in the put module
+        menus.record_menu_history(parent_cmd)
+        # Displays the menu corresponding with name
+        menus.Menu().display_menu(parent_cmd)
+        # Prompts user input
+        put.user_input()
 
-        elif parent_cmd == 'back':
-            menus.back()
-
-        elif parent_cmd =='quit':
-            menus.quit()
-
-        elif parent_cmd in app_data.menu_dict:
-            # If the name of the tool/menu is in the menu_dict dictionary in app_data and its value is a list
-
-            # Record the name of the tool/menu in history list in the put module
-            menus.record_menu_history(parent_cmd)
-            # Displays the menu corresponding with name
-            menus.Menu().display_menu(parent_cmd)
-            # Prompts user input
-            put.user_input()
-        # Tool Processing
+    # SHELL TOOL PROCESSING
+    elif parent_cmd in app_data.tool_dict:
+        tool = command[0]
+        flags = command[1:]
+        tool_cmd_eval(tool, flags)
+    else:
+        print('There is no such RTTK command.')

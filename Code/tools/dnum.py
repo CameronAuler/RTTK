@@ -1,3 +1,4 @@
+import put
 """
 import dns.resolver
 import sys
@@ -24,3 +25,6 @@ for records in record_types:
         print('Quitting.')
         quit()
 """
+def dnum():
+    print('This tool has not yet been implemented')
+    put.user_input()

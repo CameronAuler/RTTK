@@ -1,3 +1,6 @@
+import put
+
+'''
 import random
 import string
 import itertools
@@ -23,3 +26,8 @@ def brute_force(passwd, alphabet):
         if combination == passwd_tuple:
             print(f"found {passwd_tuple}")
     stop = time.time()
+'''
+
+def brutus():
+    print('This tool has not been implemented yet.')
+    put.user_input()

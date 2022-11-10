@@ -47,7 +47,7 @@ command_dict = {
 tool_dict = {
         "pyfi": ("pyfi", "pi"),
         "dnum": ("dnum", "dn"),
-        "net scan": ("nscan", "ns"),
+        "net scan": (('tcp', 'sv', 'arp'),),
         "proxy pong": ("xpong", "xp"),
         "squeegee": ("squg", "sq"),
         "vuln scan": ("Vscan", "vs"),
