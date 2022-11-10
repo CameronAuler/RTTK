@@ -30,7 +30,6 @@ command_dict = {
         "help": ("help", "h"),
         "quit": ("quit", "q"),
         "clear": ("clear", "cls"),
-        "home": ("home"),
         # TOOLS
         "pyfi": ("pyfi", "pi"),
         "dnum": ("dnum", "dn"),

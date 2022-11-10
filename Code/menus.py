@@ -143,8 +143,8 @@ def help_page():
 
 def quit():
     """This function quits the RTTK application."""
+    #functions.threader(functions.load())
     print("Quiting >>>")
-    functions.threader(functions.load())
     sys.exit()
     
     

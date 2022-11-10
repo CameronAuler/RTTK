@@ -22,9 +22,16 @@ def user_input():
     
     # Seperates the input string using spaces as deviders and stores values in a list
     command_list = user_entry.split()
+    print(command_list)
+    time.sleep(2)
     
     # Searches the command in the command database for the corresponding menu/tool and converts the input to the menu/tool name
-    command_list[0] = search_db(command_list[0])
+    cmd = command_list[0]
+    print(cmd)
+    time.sleep(2)
+    command_list[0] = search_db(cmd)
+    print(command_list[0], type(command_list[0]))
+    time.sleep(2)
     
     # Converts the list of seperated flags into a tuple for more efficient handling
     command = tuple(command_list)
@@ -34,20 +41,15 @@ def user_input():
 
 
 # Processes commands passed through shell mode associated with tools
-def command_input():
+def tool_input(tool):
     '''Processes comands associated with tools.'''
     # Still needs to be updated, may combine with user input
     
     # Takes in user input within shell mode for the tool specified in previous commands
-    command = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}TOOL{Colors.end}{Colors.magenta}>>> {Colors.end}"))
-    
-    flags = command.split()
-    command_search = put.search_db(flags[0])
-    if command_search in app_data.command_dict.get('main'):
-        flags = [command_search]
-        menus.menu_setup(flags)
-    else:
-        return flags
+    tool_entry = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}{tool.upper()}{Colors.end}{Colors.magenta}>>> {Colors.end}"))
+    flag_list = tool_entry.split()
+    flags = tuple(flag_list)
+    return flags
 
 # Searches the command database associated with shell mode
 def search_db(user_selection):
@@ -56,8 +58,7 @@ def search_db(user_selection):
     for key, value in app_data.command_dict.items():
         for item in value:
             if user_selection == item:
-                print(f"{Colors.green}SUCCESS >>>{Colors.end}")
-                time.sleep(0.1)
+                # print(f"{Colors.green}SUCCESS >>>{Colors.end}")
                 return key
             else:
                 pass
@@ -67,47 +68,48 @@ def search_db(user_selection):
 def input_processor(command):
     # Convert list to tuple (for sys.argv list)
     if isinstance(command, list):
-        command = tuple(command)
+        temporary_tuple = command
+        command = tuple(temporary_tuple)
     else:
         pass
     
     # References the parent command of the input
     parent_cmd = command[0]
     
+    if len(command) > 1:
+        flags = command[1:]
+        print(f'these are the flags passed to net scan: {flags}')
+    
     # CLI PROCESSING
     # Checks for the RTTK shell mode initiation (only rttk.py passed as an argument)
-    if len(command) == 1 and parent_cmd == 'rttk.py':
-        menus.home()
+    if parent_cmd == 'rttk.py' or parent_cmd == 'c:\\Users\\CM8817\\Github\\RTTK\\Code\\rttk.py':
+        if len(command) == 1:
+            menus.home()
+        elif len(command) == 2:
+            tool = search_db(command[1])
+            if tool == 'net scan':
+                net_scan.net_scan()
     else:
         pass
     
-    # SHELL PROCESSING
-    if len(command) == 1:
-        # Menu functionality handling
+    if len(command) <= 6:
+        # SHELL PROCESSING
         if parent_cmd == 'home':
             menus.home()
-            
+
         elif parent_cmd == 'back':
             menus.back()
-            
+
         elif parent_cmd =='quit':
             menus.quit()
-            
+
         elif parent_cmd in app_data.menu_dict:
             # If the name of the tool/menu is in the menu_dict dictionary in app_data and its value is a list
-            # Record the name of the tool/menu in memory
 
+            # Record the name of the tool/menu in history list in the put module
             menus.record_menu_history(parent_cmd)
             # Displays the menu corresponding with name
             menus.Menu().display_menu(parent_cmd)
             # Prompts user input
             put.user_input()
-        else:
-            print(parent_cmd)
-            print(type(parent_cmd))
-            print('this menu functionality has not been added yet.')
-    else:
-        # Tool Handling
-        print(parent_cmd)
-        print(type(parent_cmd))
-        print('the functionality of passing multiple arguments through the shell is currently being redone.')
+        # Tool Processing
