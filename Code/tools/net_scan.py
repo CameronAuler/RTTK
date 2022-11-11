@@ -87,6 +87,7 @@ def arp_scan(scan_type, ip_address, ports):
     broadcast_packet.show()
 
 def threader(fun, target, ports):
+    '''Pass this function a function, a target, and a tuple of ports'''
     if options.options("set_speed") is True:
         t_start = time.perf_counter()
         for port in range(ports[0], ports[1]):
@@ -102,7 +103,10 @@ def threader(fun, target, ports):
 
 def ns_help():
     print(r"""<SCAN TYPE> <IP ADDRESS> <PORTS>
-          Network Scan: tcp 10.0.0.0/24 0-1000""")
+          Network Scan: tcp 10.0.0.215 0-1000
+          
+          
+          10.0.0.0/24 0-1000""")
 
 def ns_input(flag):
     ns_entry = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}NET SCAN{Colors.end}{Colors.magenta}>>> {Colors.end}"))
@@ -117,6 +121,9 @@ def net_scan(flags):
     # Clear the global list Open_ports
     # Recommended to change this to a different data structure because lists are inefficiient with memory.
     
+    threader(tcp_scan(flags[1], flags[2]), flags[1], flags[2])
+    #threader(tcp_scan('10.0.0.215', 9999), '10.0.0.215', 9999)
+    
     open_ports.clear()
     
     if len(flags) < 1:
@@ -126,19 +133,23 @@ def net_scan(flags):
     elif 'q' in flags or 'quit' in flags:
         menus.quit()
         
-    elif len(flags) >= 1 and len(flags) < 3 and flags[0] in app_data.tool_dict['net scan']:
+    elif len(flags) >= 1 and len(flags) < 3 and flags[0] in app_data.tool_dict['net scan'][0]:
         ns_help()
         print('More info needed.')
         ns_input(flags)
         
-    elif len(flags) == 3 and flags[0] in app_data.tool_dict['net scan'][0]:
+    elif len(flags) >= 3 and flags[0] in app_data.tool_dict['net scan'][0]:
+        
+        # Split Port Rangee
         if '-' in flags[2]:
             port_range_split = tuple(flags[2].split('-'))
             port_to_int = (flags[0], flags[1],  port_range_split)
             flags = port_to_int
+            print(flags)
         else:
             port_to_int = (flags[0], flags[1], int(flags[2]))
             flags = port_to_int
+        
         
         if flags[0] == 'arp':
             arp_scan(flags[0], flags[1], flags[2])
@@ -147,4 +158,5 @@ def net_scan(flags):
         elif flags[0] == 'sv' or flags[0] == 'service':
             print('running service scan')
     else:
+        print(flags)
         print('Passing more than 3 arguments to net scan is not yet implemented.')
