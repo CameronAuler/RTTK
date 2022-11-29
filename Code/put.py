@@ -77,7 +77,7 @@ def tool_cmd_eval(tool, flags):
             elif tool == 'brutus':
                 brutus.brutus()
 
-def fun_cmd_eval(utility):
+def util_cmd_eval(utility):
     if utility == 'home':
         menus.home()
     elif utility == 'back':
@@ -116,7 +116,7 @@ def input_processor(command):
 
     # SHELL UTILITY PROCESSING
     elif parent_cmd in app_data.command_dict['home']:
-        fun_cmd_eval(parent_cmd)
+        util_cmd_eval(parent_cmd)
     
     # SHELL MENU PROCESSING
     elif parent_cmd in app_data.menu_dict:
@@ -134,3 +134,4 @@ def input_processor(command):
         tool_cmd_eval(tool, flags)
     else:
         print('There is no such RTTK command.')
+        user_input()

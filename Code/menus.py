@@ -45,8 +45,6 @@ def home():
 
 def back():
     """This function goes back to the last menu in the menu history of the RTTK project."""
-    print(app_data.menu_history)
-    time.sleep(2)
     if len(app_data.menu_history) > 1:
         last_command = (app_data.menu_history[-2],)
         app_data.menu_history.pop()

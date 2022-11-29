@@ -121,15 +121,19 @@ def net_scan(flags):
     # Clear the global list Open_ports
     # Recommended to change this to a different data structure because lists are inefficiient with memory.
     
-    threader(tcp_scan(flags[1], flags[2]), flags[1], flags[2])
+    #threader(tcp_scan(flags[1], flags[2]), flags[1], flags[2])
     #threader(tcp_scan('10.0.0.215', 9999), '10.0.0.215', 9999)
     
     open_ports.clear()
     
+    # If there are no flags passed to the net_scan function
     if len(flags) < 1:
+        # Net scan help
         ns_help()
+        # prompt net scan input, this will be replaced with tool input in put.py
         ns_input(flags)
-        
+    
+    # if any flag passed to the net_scan function
     elif 'q' in flags or 'quit' in flags:
         menus.quit()
         
