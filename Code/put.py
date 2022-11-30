@@ -38,7 +38,7 @@ def user_input():
 def tool_input(tool):
     '''Processes comands associated with tools.'''
     # Still needs to be updated, may combine with user input
-    
+
     # Takes in user input within shell mode for the tool specified in previous commands
     tool_entry = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}{tool.upper()}{Colors.end}{Colors.magenta}>>> {Colors.end}"))
     flag_list = tool_entry.split()
@@ -57,6 +57,7 @@ def search_db(user_selection):
             else:
                 pass
 
+# The tool_cmd_eval function takes the tool name and any flags that were passed with the tool name and passes the flags to the corresponding tool function.
 def tool_cmd_eval(tool, flags):
             if tool == 'proxy pong':
                 proxy_pong.proxy_pong()
@@ -69,13 +70,15 @@ def tool_cmd_eval(tool, flags):
             elif tool == 'cve db':
                 cvedb.cvedb()
             elif tool == 'vuln scan':
-                vscan.vscan()  
+                vscan.vscan()
             elif tool  == 'pyfi':
                 pyfi.pyfi()
             elif tool == 'crack':
                 crack.crack()
             elif tool == 'brutus':
                 brutus.brutus()
+
+
 
 def util_cmd_eval(utility):
     if utility == 'home':
@@ -87,7 +90,6 @@ def util_cmd_eval(utility):
 
 
 
-
 def input_processor(command):
     '''This function processes all of the input for RTTK through the CLI and through shell mode.'''
     # Convert list to tuple (for sys.argv list)
@@ -96,10 +98,10 @@ def input_processor(command):
         command = tuple(temporary_tuple)
     else:
         pass
-    
+
     # References the parent command of the input
     parent_cmd = command[0]
-    
+
         # CLI PROCESSING
         # If the program was run through the CLI
     if parent_cmd == 'rttk.py' or parent_cmd == 'c:\\Users\\CM8817\\Github\\RTTK\\Code\\rttk.py':
@@ -117,7 +119,7 @@ def input_processor(command):
     # SHELL UTILITY PROCESSING
     elif parent_cmd in app_data.command_dict['home']:
         util_cmd_eval(parent_cmd)
-    
+
     # SHELL MENU PROCESSING
     elif parent_cmd in app_data.menu_dict:
         # Record the name of the tool/menu in history list in the put module
