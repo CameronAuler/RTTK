@@ -19,17 +19,6 @@ import menus
 # Stores the open ports for the program
 open_ports = []
 
-def thread_pooler(fun, target, ports):
-    """This function uses multi-threading to speed up the scanning process"""
-    # Thread_pooler() is different from normal threading because it allows parameters to be passed with the funciton being threaded.
-    
-    # This variable creates a thread pool with the maximum amount of threads being 
-    pool = ThreadPoolExecutor(options.options("thread_limit"))
-    
-    for _ in range(options.options("thread_limit")):
-        task = pool.submit(fun, target, ports)
-
-
 
 
 def tcp_scan(target, port):    
@@ -55,7 +44,6 @@ def tcp_scan(target, port):
 
 
 
-
 def service_scan(target, port):    
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -75,6 +63,7 @@ def service_scan(target, port):
         pass
 
 
+
 def arp_scan(scan_type, ip_address, ports):
     # Arp Scan
     print(ip_address, type(ip_address))
@@ -85,6 +74,21 @@ def arp_scan(scan_type, ip_address, ports):
     answered_list = scapy.srp(arp_broadcast_packet, timeout=1, verbose=False)[0]
     print(answered_list)
     broadcast_packet.show()
+
+
+
+def thread_pooler(fun, target, ports):
+    """The tread_pooler function allows for arguments to be passed to the threader function"""
+    # Thread_pooler() is different from normal threading because it allows parameters to be passed with the funciton being threaded.
+    
+    # This variable creates a thread pool with the maximum amount of threads being 
+    pool = ThreadPoolExecutor(options.options("thread_limit"))
+    
+    # 
+    for _ in range(options.options("thread_limit")):
+        task = pool.submit(fun, target, ports)
+
+
 
 def threader(fun, target, ports):
     '''Pass this function a function, a target, and a tuple of ports'''
@@ -99,7 +103,8 @@ def threader(fun, target, ports):
     else:
         for port in range(1, options.options("port_limit")):
             fun(target, ports)
-    
+
+
 
 def ns_help():
     print(r"""<SCAN TYPE> <IP ADDRESS> <PORTS>
@@ -107,6 +112,8 @@ def ns_help():
           
           
           10.0.0.0/24 0-1000""")
+
+
 
 def ns_input(flag):
     ns_entry = str(input(f"\n{Colors.magenta}<{Colors.end}{Colors.blue}NET SCAN{Colors.end}{Colors.magenta}>>> {Colors.end}"))
@@ -116,21 +123,42 @@ def ns_input(flag):
     flags = tuple(flag)
     net_scan(flags)
 
+
+
 def net_scan(flags):
-    """net_scan() recieves a list of flags, example '-tcp', and their values."""
-    # Clear the global list Open_ports
-    # Recommended to change this to a different data structure because lists are inefficiient with memory.
+    """the net_scan function recieves a list of flags and runs the corresponding scan based on the flag values."""
+    
+    # Logic Map
+    '''
+    - no flags
+        - print help
+        - prompt ns input
+    
+    - quit in flags
+        - quit program
+    
+    - not all three neccessary flags
+        - print help
+        - prompt ns input
+        
+    - three neccessary flags
+        - Run corresponding scan
+    '''
+    
     
     #threader(tcp_scan(flags[1], flags[2]), flags[1], flags[2])
     #threader(tcp_scan('10.0.0.215', 9999), '10.0.0.215', 9999)
     
+    # Clear the global list Open_ports
     open_ports.clear()
     
     # If there are no flags passed to the net_scan function
     if len(flags) < 1:
         # Net scan help
         ns_help()
-        # prompt net scan input, this will be replaced with tool input in put.py
+        
+        # prompt net scan input
+        # this will be replaced with tool_input in put.py
         ns_input(flags)
     
     # if any flag passed to the net_scan function

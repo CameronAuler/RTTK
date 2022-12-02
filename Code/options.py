@@ -4,6 +4,7 @@
 
 """This module contains all of the settings for the RTTK project."""
 import psutil
+import put
 
 # 65535
 
@@ -20,8 +21,11 @@ def options(setting):
     }
     return opts[setting]
 
-def options_setup():
+def options_setup(flags):
     """This function is to set up the options page for the RTTK application."""
+    
+    print(f"the flag set {flags} was passed to options.")
+    
     print(
         """
 
@@ -29,3 +33,5 @@ def options_setup():
 
         """
     )
+    
+    put.user_input()

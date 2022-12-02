@@ -4,11 +4,16 @@
 
 """This module is for the notes aspect of the RTTK project."""
 import os
+import put
 
-def notes_setup():
+def notes_setup(flags):
     """This function will setup the notes menu screen for the RTTK project."""
+    
     displayed_dir = os.path.dirname(os.path.realpath(__file__))
     print(f"CURRENT DIRECTORY: {displayed_dir}")
+    
+    print(f"the flag set {flags} was passed to options.")
+    
     print(
         """
 
@@ -16,3 +21,5 @@ def notes_setup():
 
         """
     )
+    
+    put.user_input()

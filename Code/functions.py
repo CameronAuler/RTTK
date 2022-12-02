@@ -11,6 +11,7 @@ from sys import platform
 import threading
 import pyfiglet
 import options
+import put
 from colors import Colors
 
 def main_title():
@@ -52,8 +53,8 @@ def hint():
     # This code prints out the hint bar of the main RTTK UI
     for key, value in app_data.command_dict.items():
         for item in value:
-            if key in app_data.commands:
-                print(f"{Colors.black}  <{item}>  {Colors.end}", end="")
+            if key in app_data.functional_commands:
+                print(f"{Colors.black}<{item}>     {Colors.end}", end="")
             else:
                 pass
     print("")
@@ -85,6 +86,16 @@ def clear():
         os.system('cls')
     else:
         return platform
+
+def back():
+    """This function goes back to the last menu in the menu history of the RTTK project."""
+    if len(app_data.menu_history) > 1:
+        last_command = (app_data.menu_history[-2],)
+        app_data.menu_history.pop()
+    else:
+        last_command = ("home",)
+    
+    put.input_processor(last_command)
 
 def threader(fun):
     """This function sets the speed and intensity of the application on the CPU."""

@@ -5,21 +5,22 @@
 """This module contains the data required for the RTTK application. """
 
 menu_history = []
-commands = ["help", "back", "notes", "options", "clear"]
+functional_commands = ("home", "help", "back", "clear", "quit")
+utilities = ("notes", "options")
 
 menu_dict = {
         # Menus
-        "home": ("ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS", "QUIT"),
+        "home": ("ANONYMITY", "OSINT", "PROBE", "ATTACK", "NOTES", "OPTIONS"),
         "anonymity" : ("PROXY PONG",),
-        "osint": ("DNUM", "SQUEEGEE", "NET SCAN", "CVE DB"),
+        "osint": ("DNUM", "SQUEEGEE", "NET SCAN"),
         "probe": ("VULN SCAN", "PYFI"),
-        "attack": ("CRACK", "BRUTUS"),
+        "attack": ("CRACK", "BRUTUS")
     }
 
 # Dictionary containing all of the possible commands for a each utility and tool
 command_dict = {
         # MENUS
-        "home": ("help", "back", "home", "notes", "options"),
+        "home": ("home", "m"),
         "anonymity": ("anonymity", "a"),
         "osint": ("osint", "o"),
         "probe": ("probe", "p"),
@@ -28,8 +29,9 @@ command_dict = {
         "options": ("options", "opt"),
         "back": ("back", "b"),
         "help": ("help", "h"),
-        "quit": ("quit", "q"),
         "clear": ("clear", "cls"),
+        "quit": ("quit", "q"),
+        
         # TOOLS
         "pyfi": ("pyfi", "pi"),
         "dnum": ("dnum", "dn"),
@@ -38,30 +40,19 @@ command_dict = {
         "squeegee": ("squg", "sq"),
         "vuln scan": ("Vscan", "vs"),
         "krod": ("krod", "kd"),
-        "doS": ("dos", "ds"),
-        "cve db": ("cvb", "cb"),
         "crack": ("crack", "ck"),
         "brutus": ("brute", "bt")
     }
 
 tool_dict = {
-        "pyfi": ("pyfi", "pi"),
-        "dnum": ("dnum", "dn"),
-        "net scan": (('tcp', 'sv', 'arp'),),
-        "proxy pong": ("xpong", "xp"),
+    # Tool: (minimum flag count, example)
+        "pyfi": (3, "pyfi example"),
+        "dnum": (3, "dnum example"),
+        "net scan": (3, "ns tcp 10.0.0.215 0-1000"),
+        "proxy pong": (3, "proxy pong example"),
         "squeegee": ("squg", "sq"),
         "vuln scan": ("Vscan", "vs"),
         "krod": ("krod", "kd"),
-        "doS": ("dos", "ds"),
-        "cve db": ("cvb", "cb"),
         "crack": ("crack", "ck"),
         "brutus": ("brute", "bt")
     }
-
-def menu_db(menu):
-    """This function contains all of the menus for the program."""
-    return menu_dict.get(menu)
-
-def command_db(menu):
-    """This function contains all of the menus for the program."""
-    return command_dict.get(menu)
