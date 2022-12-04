@@ -31,7 +31,7 @@ class Menu:
         '''This function displays the menu for the current menu for the RTTK project.'''
         functions.set_ui()
         for _key, value in enumerate(app_data.menu_dict.get(menu)):
-            print(f"\n{Colors.white}[+]{Colors.end}{Colors.cyan}  -->    {value}{Colors.end}", end="")
+            print(f"\n{Colors.white}[+]{Colors.end}{Colors.red}  -->    {value}{Colors.end}", end="")
             for _key, value in enumerate(app_data.command_dict.get(value.lower())):
                 print(f"\t{Colors.black}   <{value}>{Colors.end}", end="")
 
