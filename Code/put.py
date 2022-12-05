@@ -67,13 +67,20 @@ def search_db(user_selection):
 
 
 
+
+
+
 def list_to_tuple(command):
     # Convert list to tuple (for sys.argv list)
     if isinstance(command, list):
         temporary_tuple = command
         command = tuple(temporary_tuple)
+        return command
     else:
         pass
+
+
+
 
 
 
@@ -102,6 +109,11 @@ def tool_cmd_eval(tool, flags):
 
 
 
+
+
+
+
+
 def fun_cmd_eval(fun_cmd):
     if fun_cmd == 'home':
         menus.home()
@@ -119,6 +131,12 @@ def fun_cmd_eval(fun_cmd):
 
 
 
+
+
+
+
+
+
 def utility_eval(utility, flags):
     if utility == 'options':
         options.options_setup(flags)
@@ -126,6 +144,12 @@ def utility_eval(utility, flags):
         notes.notes_setup(flags)
     else:
         print(f"{Colors.red}INVALID COMMAND>>>{Colors.end}")
+
+
+
+
+
+
 
 
 
@@ -138,7 +162,6 @@ def cli_cmd_eval(command):
     elif len(command) >= 2 and search_db(command[1]) in app_data.command_dict:
         # Sets the name of the tool to the variable tool
         tool = search_db(command[1])
-        print(command, command[2:])
         flags = command[2:]
         tool_cmd_eval(tool, flags)
         
@@ -147,17 +170,23 @@ def cli_cmd_eval(command):
 
 
 
+
+
+
+
+
 def input_processor(command):
     '''This function processes all of the input for RTTK through the CLI and through shell mode.'''
     
+    # Converts the command list to a tuple for better memory management
+    command = list_to_tuple(command)
+    
     # Debug line
-    print(f"command: {command}\ncommand length: {len(command)}")
-    time.sleep(1)
+    #print(f"passed from input_processor() . . .\n-----------------------------------\ncommand: {command}\ncommand length: {len(command)}\ncommand type: {type(command)}")
+    #time.sleep(1)
+    
     # References the parent command of the input
     parent_cmd = command[0]
-    # Converts the command list to a tuple for better memory management
-    list_to_tuple(command)
-    
     
     # If the program was run through the CLI
     if parent_cmd == 'rttk.py' or parent_cmd == 'c:\\Users\\CM8817\\Github\\RTTK\\Code\\rttk.py':
