@@ -5,7 +5,6 @@
 """This is the net_scan module: the RTTK project"""
 
 import time
-import threading
 from colors import Colors
 import socket
 from queue import Queue
@@ -158,9 +157,11 @@ def net_scan(flags):
     # Quits the RTTK shell if it is running
     if 'q' in flags or 'quit' in flags:
         menus.quit()
+        
     # If there are less than two flags print ns_help()
     elif len(flags) < 2:
         ns_help()
+        
     # Runs network_scan if there are two flags
     elif len(flags) == 2:
         # Runs arp scan if the scan type flag is arp
@@ -168,6 +169,7 @@ def net_scan(flags):
             arp_scan(flags[-1])
         else:
             print("no other scans besides arp yet.")
+            
     # Runs the specified scan with the specified modifiers
     elif len(flags) > 2:
         if flags[0] == 'tcp':
@@ -175,5 +177,6 @@ def net_scan(flags):
                 tcp_scan('10.0.0.215', port)
         else:
             print("no other scans besides tcp yet.")
+            
     else:
         print("INVALID COMMAND>>>")
