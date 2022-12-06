@@ -31,11 +31,13 @@ def define_ports(ports):
     if '-' in ports:
         ports = ports.split('-')
         for port in ports:
+            index = ports.index(port)
             port = int(port)
+            ports[index] = port
     else:
-        ports = int(ports)
+        int_ports = int(ports)
+        ports = int_ports
     return ports
-
 
 def tcp_scan(target, port):
     """This function takes a target IP and a port and determins if the port is open"""
@@ -47,9 +49,6 @@ def tcp_scan(target, port):
         
         # Initiates the connection
         result = s.connect_ex((target, port))
-        
-        if result == 0:
-            print(result)
         
         if result == 0 and port not in open_ports:
             open_ports.append(port)
@@ -124,7 +123,6 @@ def thread_pooler(fun, target, ports):
         for _ in range(options.options("thread_limit")):
                 executor.submit(fun, target, ports)
 
-
 def threader(fun, target, ports):
     '''Pass this function a function, a target, and a tuple of ports'''
     
@@ -173,8 +171,10 @@ def net_scan(flags):
     # Runs the specified scan with the specified modifiers
     elif len(flags) > 2:
         if flags[0] == 'tcp':
-            for port in range(0, 500):
-                tcp_scan('10.0.0.215', port)
+            
+            ports = define_ports(flags[-1])
+            for port in range(ports[0], ports[1]):
+                tcp_scan(flags[-2], port)
         else:
             print("no other scans besides tcp yet.")
             
