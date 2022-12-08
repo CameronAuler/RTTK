@@ -18,8 +18,6 @@ import options
 # Imports all of the tools fro mteh tools package
 from tools import *
 
-
-
 def user_input():
     '''This function gathers the user input within shell mode.'''
     # Input command retains user input from the terminal
@@ -35,10 +33,11 @@ def user_input():
     # Converts the list of seperated flags into a tuple for more efficient handling
     command = tuple(command_list)
     
+    # Debug Line
+    #print(f"passed to input_processor() . . .\n-----------------------------------\ncommand: {command}\ncommand length: {len(command)}\ncommand type: {type(command)}")
+
     # passes the command tuple to the input_processor function
     input_processor(command)
-
-
 
 # Processes commands passed through shell mode associated with tools
 def tool_input(tool):
@@ -50,8 +49,6 @@ def tool_input(tool):
     flag_list = tool_entry.split()
     flags = tuple(flag_list)
     return flags
-
-
 
 # Searches the command database associated with shell mode
 def search_db(user_selection):
@@ -66,10 +63,6 @@ def search_db(user_selection):
                 pass
 
 
-
-
-
-
 def list_to_tuple(command):
     # Convert list to tuple (for sys.argv list)
     if isinstance(command, list):
@@ -77,11 +70,7 @@ def list_to_tuple(command):
         command = tuple(temporary_tuple)
         return command
     else:
-        pass
-
-
-
-
+        return command
 
 
 # The tool_cmd_eval function takes the tool name and any flags that were passed with the tool name and passes the flags to the corresponding tool function.
@@ -107,13 +96,6 @@ def tool_cmd_eval(tool, flags):
     else:
         print(f"{Colors.red}INVALID COMMAND>>>{Colors.end}")
 
-
-
-
-
-
-
-
 def fun_cmd_eval(fun_cmd):
     if fun_cmd == 'home':
         menus.home()
@@ -130,13 +112,6 @@ def fun_cmd_eval(fun_cmd):
         print(f"{Colors.red}INVALID COMMAND>>>{Colors.end}")
 
 
-
-
-
-
-
-
-
 def utility_eval(utility, flags):
     if utility == 'options':
         options.options_setup(flags)
@@ -144,14 +119,6 @@ def utility_eval(utility, flags):
         notes.notes_setup(flags)
     else:
         print(f"{Colors.red}INVALID COMMAND>>>{Colors.end}")
-
-
-
-
-
-
-
-
 
 def cli_cmd_eval(command):
     # If the only command is the rttk command
@@ -167,13 +134,6 @@ def cli_cmd_eval(command):
         
     else:
         print(f"{Colors.red}INVALID COMMAND>>>{Colors.end}")
-
-
-
-
-
-
-
 
 def input_processor(command):
     '''This function processes all of the input for RTTK through the CLI and through shell mode.'''
